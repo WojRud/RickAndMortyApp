@@ -5,20 +5,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.rickandmortyapp.databinding.ActivityMainBinding
 import com.example.rickandmortyapp.databinding.FragmentCharactersListBinding
+import com.example.rickandmortyapp.databinding.FragmentTopMenuBinding
 
-class CharactersListFragment : Fragment() {
-    private var _binding: FragmentCharactersListBinding? = null
+class TopMenuFragment : Fragment() {
+    private var _binding: FragmentTopMenuBinding? = null
     private val binding get() = _binding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentCharactersListBinding.inflate(layoutInflater)
+        _binding = FragmentTopMenuBinding.inflate(layoutInflater)
         return binding?.root
     }
+
+
 
 
 
