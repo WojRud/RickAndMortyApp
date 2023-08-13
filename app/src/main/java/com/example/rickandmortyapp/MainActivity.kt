@@ -20,8 +20,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
- //   private lateinit var viewModel: CharacterViewModel
- //   private lateinit var charRepository: CharRepository
+
+    //  private lateinit var viewModel: CharacterViewModel
+    //   private lateinit var charRepository: CharRepository
     private val viewModel: CharacterViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,23 +30,20 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-
         val topMenuFragment = TopMenuFragment()
-        val recyclerFragment = CharactersListFragment()
+//        val recyclerFragment = CharactersListFragment()
 
         supportFragmentManager.commit {
             addToBackStack(null)
             add(R.id.fragmentContainer, topMenuFragment, null)
-            add(R.id.recyclerContainer, recyclerFragment, null)
+            //          add(R.id.recyclerContainer, recyclerFragment, null)
         }
 
-       // charRepository = CharRepository()
+        // charRepository = CharRepository()
 
-     //   viewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory(getApplication())).get(CharacterViewModel::class.java)
+        //  viewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory(getApplication())).get(CharacterViewModel::class.java)
 
         viewModel.getCharacterData()
-
 
     }
 }

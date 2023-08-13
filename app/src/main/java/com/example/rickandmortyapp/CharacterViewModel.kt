@@ -1,5 +1,6 @@
 package com.example.rickandmortyapp
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
@@ -7,35 +8,28 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-    class CharacterViewModel : ViewModel() {
+class CharacterViewModel : ViewModel() {
 
-        private val _status = MutableLiveData<String>()
+    private val _status = MutableLiveData<CharacterModel>()
 
-        val status: LiveData<String> = _status
+    val status: LiveData<CharacterModel> = _status
 
-        init {
-            getCharacterData()
-        }
+ //   init {
+ //       getCharacterData()
+ //   }
 
-        fun getCharacterData() {
-            viewModelScope.launch {
-                try {
-                    val listResult = RickAndMortyApi.retrofitService.getCharacterById()
-           //         _status.value = "Success: ${listResult.size} Mars photos retrieved"
-                    for (character in listResult) {
-                        Log.d("CharacterViewModel", "Name: ${character.name}")
-                    }
-                } catch (e: Exception) {
-                    _status.value = "Failure: ${e.message}"
-                }
+    fun getCharacterData() {
+        viewModelScope.launch {
+            try {
+                val listResult = RickAndMortyApi.retrofitService.getCharacterById()
+
+                Log.d("CharacterViewModel", "Name: ${listResult.name} delivered")
+
+            } catch (e: Exception) {
+                Log.e("CharacterViewModel", "Request error: ${e.message}")
             }
         }
-
-
-
-
-
-
+    }
 
 
 /*
@@ -62,5 +56,5 @@ import retrofit2.Response
 
 
  */
-    }
+}
 

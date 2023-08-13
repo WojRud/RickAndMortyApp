@@ -20,7 +20,7 @@ private val retrofit = Retrofit.Builder()
 
 interface AppInterface {
     @GET("character/1")
-    fun getCharacterById(): List<CharacterModel>
+    suspend fun getCharacterById(): CharacterModel
 }
 
 object RickAndMortyApi {

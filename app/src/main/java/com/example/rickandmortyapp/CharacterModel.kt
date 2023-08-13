@@ -4,7 +4,7 @@ data class CharacterModel (
     val id: Int,
     val name: String,
     val status: String,
-    val specties: String,
+    val species: String,
     val gender: String
 )
 
