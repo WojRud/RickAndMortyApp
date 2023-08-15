@@ -4,12 +4,17 @@ import android.app.Application
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.viewModels
+import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import com.example.rickandmortyapp.databinding.ActivityMainBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -30,13 +35,15 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val topMenuFragment = TopMenuFragment()
-//        val recyclerFragment = CharactersListFragment()
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
 
         supportFragmentManager.commit {
-            addToBackStack(null)
-            add(R.id.fragmentContainer, topMenuFragment, null)
-            //          add(R.id.recyclerContainer, recyclerFragment, null)
+            setReorderingAllowed(true)
+            add<TopMenuFragment>(R.id.topMenuFragment)
+            add<CharactersListFragment>(R.id.nav_host_fragment)
+
         }
 
         // charRepository = CharRepository()
@@ -46,4 +53,5 @@ class MainActivity : AppCompatActivity() {
         viewModel.getCharacterData()
 
     }
+
 }
