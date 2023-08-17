@@ -25,7 +25,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-
     //  private lateinit var viewModel: CharacterViewModel
     //   private lateinit var charRepository: CharRepository
     private val viewModel: CharacterViewModel by viewModels()
@@ -42,7 +41,6 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.commit {
             setReorderingAllowed(true)
             add<TopMenuFragment>(R.id.topMenuFragment)
-            add<CharactersListFragment>(R.id.nav_host_fragment)
 
         }
 

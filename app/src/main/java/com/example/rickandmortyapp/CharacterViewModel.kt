@@ -1,12 +1,10 @@
 package com.example.rickandmortyapp
 
-import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.*
+import com.example.rickandmortyapp.network.CharacterModel
+import com.example.rickandmortyapp.network.RickAndMortyApi
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class CharacterViewModel : ViewModel() {
 
@@ -18,10 +16,12 @@ class CharacterViewModel : ViewModel() {
 
   //  val characterLiveData: LiveData<CharacterModel> get() = _characterLiveData
 
+    private val _characterList = MutableLiveData<List<CharacterModel>>()
+    val characterList: LiveData<List<CharacterModel>> = _characterList
 
- //   init {
- //       getCharacterData()
- //   }
+    init {
+        getCharacterData()
+    }
 
     fun getCharacterData() {
 
