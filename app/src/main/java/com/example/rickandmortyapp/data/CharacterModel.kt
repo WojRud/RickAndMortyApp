@@ -1,4 +1,4 @@
-package com.example.rickandmortyapp.network
+package com.example.rickandmortyapp.data
 
 data class CharacterModel (
     val id: Int,

@@ -1,4 +1,4 @@
-package com.example.rickandmortyapp.network
+package com.example.rickandmortyapp.data
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
