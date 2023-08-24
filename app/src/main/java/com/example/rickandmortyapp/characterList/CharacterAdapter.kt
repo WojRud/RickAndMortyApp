@@ -3,15 +3,16 @@ package com.example.rickandmortyapp.characterList
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListAdapter
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.ListAdapter
 import com.example.rickandmortyapp.R
 import com.example.rickandmortyapp.data.CharacterModel
 
-class CharacterAdapter
-    : ListAdapter<CharacterModel, CharacterAdapter.ViewHolder>(CharacterDiffCallback) {
+class CharacterAdapter(
+    private val onItemClicked: (CharacterModel) -> Unit,
+) : ListAdapter<CharacterModel, CharacterAdapter.ViewHolder>(CharacterDiffCallback) {
     // class CharacterAdapter(private val itemList: List<CharacterModel>) : RecyclerView.Adapter<CharacterAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -24,11 +25,33 @@ class CharacterAdapter
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_character, parent, false)
-        return ViewHolder(itemView)
+        val viewHolder = ViewHolder(itemView)
+ //       return ViewHolder(itemView)
+
+        viewHolder.itemView.setOnClickListener {
+            val position = viewHolder.adapterPosition
+            if (position != RecyclerView.NO_POSITION) {
+                onItemClicked(getItem(position))
+            }
+        }
+
+        return viewHolder
+
+ /*
+        ViewHolder.itemView.setOnClickListener {
+            val position = viewHolder.adapterPosition
+            onItemClicked(getItem(position))
+        }
+
+        return ViewHolder
+
+
+  */
+
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val currentItem = itemList[position]
+        val currentItem = getItem(position)
         holder.bind(currentItem)
      //   holder.nameTextView.text = currentItem.name
     }
@@ -37,7 +60,7 @@ class CharacterAdapter
         submitList(characterList)
     }
 
-    class CharacterDiffCallback : DiffUtil.ItemCallback<CharacterModel>() {
+    companion object CharacterDiffCallback : DiffUtil.ItemCallback<CharacterModel>() {
         override fun areItemsTheSame(oldItem: CharacterModel, newItem: CharacterModel): Boolean {
             return oldItem.id == newItem.id
         }

@@ -6,8 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.rickandmortyapp.R
 import com.example.rickandmortyapp.databinding.FragmentCharactersListBinding
 
 class CharactersListFragment : Fragment() {
@@ -26,19 +30,21 @@ class CharactersListFragment : Fragment() {
         return binding?.root
     }
 
-  //  recyclerView = binding.recyclerView
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        //  characterAdapter = CharacterAdapter()
 
         // Inicjalizacja RecyclerView
         recyclerView = binding?.CharactersListRecyclerView!!
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         // Inicjalizacja adaptera
-        characterAdapter = CharacterAdapter()
+        characterAdapter = CharacterAdapter { clickedCharacter ->
+            // Tutaj umieść kod przechodzenia do innego fragmentu, korzystając z Navigation
+            val action = CharactersListFragmentDirections .action_charactersListFragment_to_characterDescriptionFragment(
+                clickedCharacter.id
+            )
+            view.findNavController().navigate(action)
+        }
         recyclerView.adapter = characterAdapter
 
         // Inicjalizacja ViewModel

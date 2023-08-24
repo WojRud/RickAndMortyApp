@@ -22,7 +22,9 @@ class CharacterViewModel : ViewModel() {
 
         viewModelScope.launch {
             try {
-                val listResult = RickAndMortyApi.retrofitService.getCharacterById()
+                val ids = (1..150).joinToString(",")
+                val listResult = RickAndMortyApi.retrofitService.getCharactersByIds(ids)
+
 
                 _characterList.postValue(listResult)
 

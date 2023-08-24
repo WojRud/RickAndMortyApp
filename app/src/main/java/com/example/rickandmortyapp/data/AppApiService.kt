@@ -5,6 +5,7 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 // private val BASE_URL = "https://rickandmortyapi.com/api/"
 
@@ -19,8 +20,9 @@ private val retrofit = Retrofit.Builder()
 
 interface AppInterface {
     ///////////////////////////////////////////////////// CZY NIE POWINNO BYĆ TYLKO CHARACTER       -    ?????????????????????????????
-    @GET("character/1,20")
-    suspend fun getCharacterById(): List<CharacterModel>
+    @GET("character/{ids}")
+    suspend fun getCharactersByIds(@Path("ids") ids: String): List<CharacterModel>
+
 }
 
 object RickAndMortyApi {
