@@ -11,6 +11,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+//            import com.example.rickandmortyapp.characterList.CharactersListDirections.*
 import com.example.rickandmortyapp.R
 import com.example.rickandmortyapp.databinding.FragmentCharactersListBinding
 
@@ -25,7 +26,7 @@ class CharactersListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ) : View? {
         _binding = FragmentCharactersListBinding.inflate(layoutInflater)
         return binding?.root
     }
@@ -39,11 +40,11 @@ class CharactersListFragment : Fragment() {
 
         // Inicjalizacja adaptera
         characterAdapter = CharacterAdapter { clickedCharacter ->
-            // Tutaj umieść kod przechodzenia do innego fragmentu, korzystając z Navigation
-            val action = CharactersListFragmentDirections .action_charactersListFragment_to_characterDescriptionFragment(
-                clickedCharacter.id
-            )
+            val action = CharactersListFragmentDirections.action_charactersListFragment_to_characterDescriptionFragment(
+                    clickedCharacter.id
+                )
             view.findNavController().navigate(action)
+
         }
         recyclerView.adapter = characterAdapter
 
@@ -66,17 +67,3 @@ class CharactersListFragment : Fragment() {
 }
 
 
-
-
-/*
-    private val newFlowerActivityRequestCode = 1
-    private val characterViewModel by viewModels<CharacterViewModel> {
-        CharactersListViewModelFactory(this)
-    }
-
-      //  binding?.GoToDescBtn?.setOnClickListener {
-      //      findNavController().navigate(R.id.action_charactersListFragment_to_characterDescriptionFragment)
-      //  }
-
-
- */

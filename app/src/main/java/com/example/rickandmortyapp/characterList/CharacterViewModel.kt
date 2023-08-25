@@ -11,12 +11,12 @@ class CharacterViewModel : ViewModel() {
     private val _characterList = MutableLiveData<List<CharacterModel>>()
     val characterList: LiveData<List<CharacterModel>> = _characterList
 
-/*
-    init {
-        getCharacterData()
-    }
+    /*
+        init {
+            getCharacterData()
+        }
 
- */
+     */
 
     fun getCharacterData() {
 
@@ -25,10 +25,7 @@ class CharacterViewModel : ViewModel() {
                 val ids = (1..150).joinToString(",")
                 val listResult = RickAndMortyApi.retrofitService.getCharactersByIds(ids)
 
-
                 _characterList.postValue(listResult)
-
-                //         Log.d("CharacterViewModel", "Name: ${listResult.name} delivered")
 
             } catch (e: Exception) {
                 Log.e("CharacterViewModel", "Request error: ${e.message}")
@@ -38,17 +35,6 @@ class CharacterViewModel : ViewModel() {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 /*

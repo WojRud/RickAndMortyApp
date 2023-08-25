@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-
+    id 'androidx.navigation.safeargs' version '2.4.2' apply false
 }
 
 android {
@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.rickandmortyapp"
-        minSdk 27
+        minSdk 26
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -37,7 +37,6 @@ android {
 }
 
 dependencies {
-
 
     implementation 'androidx.core:core-ktx:1.10.1'
     implementation 'androidx.appcompat:appcompat:1.6.1'
