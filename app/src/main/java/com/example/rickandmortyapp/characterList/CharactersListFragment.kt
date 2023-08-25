@@ -43,7 +43,7 @@ class CharactersListFragment : Fragment() {
             val action = CharactersListFragmentDirections.action_charactersListFragment_to_characterDescriptionFragment(
                     clickedCharacter.id
                 )
-            view.findNavController().navigate(action)
+        //    view.findNavController().navigate(action)
 
         }
         recyclerView.adapter = characterAdapter
