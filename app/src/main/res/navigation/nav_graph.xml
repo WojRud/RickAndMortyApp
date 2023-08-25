@@ -2,27 +2,21 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/app_navigation"
+    android:id="@+id/nav_graph"
     app:startDestination="@id/charactersListFragment">
 
     <fragment
         android:id="@+id/charactersListFragment"
         android:name="com.example.rickandmortyapp.characterList.CharactersListFragment"
-        android:label="fragment_characterslist"
+        android:label="fragment_characters_list"
         tools:layout="@layout/fragment_characters_list" >
         <action
             android:id="@+id/action_charactersListFragment_to_characterDescriptionFragment"
             app:destination="@id/characterDescriptionFragment" />
     </fragment>
-
     <fragment
         android:id="@+id/characterDescriptionFragment"
         android:name="com.example.rickandmortyapp.CharacterDescriptionFragment"
-        android:label="fragment_characterdescription"
-        tools:layout="@layout/fragment_character_description" >
-        <action
-            android:id="@+id/action_characterDescriptionFragment_to_charactersListFragment"
-            app:destination="@id/charactersListFragment" />
-    </fragment>
-
+        android:label="fragment_character_description"
+        tools:layout="@layout/fragment_character_description" />
 </navigation>
