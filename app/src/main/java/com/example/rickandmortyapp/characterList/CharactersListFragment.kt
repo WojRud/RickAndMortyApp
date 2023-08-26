@@ -6,13 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 //            import com.example.rickandmortyapp.characterList.CharactersListDirections.*
-import com.example.rickandmortyapp.R
 import com.example.rickandmortyapp.databinding.FragmentCharactersListBinding
 
 class CharactersListFragment : Fragment() {
@@ -40,10 +37,10 @@ class CharactersListFragment : Fragment() {
 
         // Inicjalizacja adaptera
         characterAdapter = CharacterAdapter { clickedCharacter ->
-            val action = CharactersListFragmentDirections.action_charactersListFragment_to_characterDescriptionFragment(
-                    clickedCharacter.id
+            val action = CharactersListFragmentDirections.actionCharactersListFragmentToCharacterDescriptionFragment(
+                clickedCharacter.id
                 )
-        //    view.findNavController().navigate(action)
+            view.findNavController().navigate(action)
 
         }
         recyclerView.adapter = characterAdapter

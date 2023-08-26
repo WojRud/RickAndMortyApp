@@ -19,10 +19,8 @@ private val retrofit = Retrofit.Builder()
     .build()
 
 interface AppInterface {
-    ///////////////////////////////////////////////////// CZY NIE POWINNO BYĆ TYLKO CHARACTER       -    ?????????????????????????????
     @GET("character/{ids}")
     suspend fun getCharactersByIds(@Path("ids") ids: String): List<CharacterModel>
-
 }
 
 object RickAndMortyApi {

@@ -8,6 +8,7 @@ import androidx.fragment.app.commit
 import androidx.navigation.fragment.NavHostFragment
 import com.example.rickandmortyapp.characterList.CharacterViewModel
 import com.example.rickandmortyapp.databinding.ActivityMainBinding
+import com.example.rickandmortyapp.topMenu.TopMenuFragment
 
 
 class MainActivity : AppCompatActivity() {

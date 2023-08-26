@@ -11,11 +11,11 @@
         android:id="@+id/character_text"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:gravity="center"
         android:text="Character Name"
         android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
