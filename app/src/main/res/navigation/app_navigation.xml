@@ -3,20 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/charactersListFragment">
+    app:startDestination="@id/charactersListFragment"
+    tools:ignore="ExtraText">
 
     <fragment
         android:id="@+id/charactersListFragment"
         android:name="com.example.rickandmortyapp.characterList.CharactersListFragment"
         android:label="fragment_characters_list"
-        tools:layout="@layout/fragment_characters_list" >
+        tools:layout="@layout/fragment_characters_list">
         <action
             android:id="@+id/action_charactersListFragment_to_characterDescriptionFragment"
             app:destination="@id/characterDescriptionFragment" />
     </fragment>
     <fragment
         android:id="@+id/characterDescriptionFragment"
-        android:name="com.example.rickandmortyapp.CharacterDescriptionFragment"
+        android:name="com.example.rickandmortyapp.characterDescription.CharacterDescriptionFragment"
         android:label="fragment_character_description"
-        tools:layout="@layout/fragment_character_description" />
+        tools:layout="@layout/fragment_character_description">
+        <argument
+            android:name="characterId"
+            app:argType="integer" />
+    </fragment>
 </navigation>
+
+

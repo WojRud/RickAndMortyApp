@@ -5,11 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-//            import com.example.rickandmortyapp.characterList.CharactersListDirections.*
+import com.example.rickandmortyapp.characterDescription.CharacterDescriptionViewModel
 import com.example.rickandmortyapp.databinding.FragmentCharactersListBinding
 
 class CharactersListFragment : Fragment() {
@@ -19,41 +20,47 @@ class CharactersListFragment : Fragment() {
     private lateinit var viewModel: CharacterViewModel
     private lateinit var recyclerView: RecyclerView
     private lateinit var characterAdapter: CharacterAdapter
+    private val characterDescriptionViewModel: CharacterDescriptionViewModel by viewModels()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ) : View? {
-        _binding = FragmentCharactersListBinding.inflate(layoutInflater)
-        return binding?.root
+    ): View {
+        val fragmentBinding = FragmentCharactersListBinding.inflate(inflater, container, false)
+
+        _binding = fragmentBinding
+        return fragmentBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Inicjalizacja RecyclerView
+        // Initializing RecyclerView
         recyclerView = binding?.CharactersListRecyclerView!!
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        // Inicjalizacja adaptera
+        // Initializing adapter
         characterAdapter = CharacterAdapter { clickedCharacter ->
-            val action = CharactersListFragmentDirections.actionCharactersListFragmentToCharacterDescriptionFragment(
-                clickedCharacter.id
+            val characterId = clickedCharacter.id
+            val action =
+                CharactersListFragmentDirections.actionCharactersListFragmentToCharacterDescriptionFragment(
+                    characterId
                 )
             view.findNavController().navigate(action)
-
         }
+
         recyclerView.adapter = characterAdapter
 
-        // Inicjalizacja ViewModel
+        // Initializing ViewModel
         viewModel = ViewModelProvider(this)[CharacterViewModel::class.java]
 
-        // Obserwacja zmian w liście postaci
+        // Observing changes in the character list
         viewModel.characterList.observe(viewLifecycleOwner) { characters ->
             characterAdapter.submitCharacterList(characters)
         }
 
-        // Pobranie danych
+        // Download data
         viewModel.getCharacterData()
     }
 

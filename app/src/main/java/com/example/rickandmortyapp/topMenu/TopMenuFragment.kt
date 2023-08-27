@@ -19,9 +19,4 @@ class TopMenuFragment : Fragment() {
         return binding?.root
     }
 
-
-
-
-
-
 }

@@ -13,8 +13,6 @@ import com.example.rickandmortyapp.topMenu.TopMenuFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    //  private lateinit var viewModel: CharacterViewModel
-    //   private lateinit var charRepository: CharRepository
     private val viewModel: CharacterViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,10 +29,6 @@ class MainActivity : AppCompatActivity() {
             add<TopMenuFragment>(R.id.topMenuFragment)
 
         }
-
-        // charRepository = CharRepository()
-
-        //  viewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory(getApplication())).get(CharacterViewModel::class.java)
 
         viewModel.getCharacterData()
 

@@ -5,7 +5,6 @@ data class CharacterModel (
     val name: String,
     val status: String,
     val species: String,
-    val gender: String
+    val gender: String,
+    val image: String
 )
-
-data class Origin(val name: String)
