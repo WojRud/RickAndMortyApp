@@ -11,22 +11,12 @@
         android:id="@+id/AppInfoTextView"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:textSize="25sp"
-        android:gravity="center"
         android:text="Rick And Morty Characters"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Switch
-        android:id="@+id/ModeSwitch"
-        android:layout_width="96dp"
-        android:layout_height="48dp"
-        android:gravity="center"
-        android:text="Mode"
+        android:textAlignment="center"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="UseSwitchCompatOrMaterialXml" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

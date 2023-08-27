@@ -36,11 +36,9 @@ class CharactersListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Initializing RecyclerView
         recyclerView = binding?.CharactersListRecyclerView!!
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        // Initializing adapter
         characterAdapter = CharacterAdapter { clickedCharacter ->
             val characterId = clickedCharacter.id
             val action =
@@ -52,15 +50,12 @@ class CharactersListFragment : Fragment() {
 
         recyclerView.adapter = characterAdapter
 
-        // Initializing ViewModel
         viewModel = ViewModelProvider(this)[CharacterViewModel::class.java]
 
-        // Observing changes in the character list
         viewModel.characterList.observe(viewLifecycleOwner) { characters ->
             characterAdapter.submitCharacterList(characters)
         }
 
-        // Download data
         viewModel.getCharacterData()
     }
 
