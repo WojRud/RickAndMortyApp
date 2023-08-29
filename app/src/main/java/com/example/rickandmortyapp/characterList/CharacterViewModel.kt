@@ -5,7 +5,6 @@ import androidx.lifecycle.*
 import com.example.rickandmortyapp.data.CharacterModel
 import com.example.rickandmortyapp.data.RickAndMortyApi
 import kotlinx.coroutines.launch
-import javax.sql.DataSource
 
 class CharacterViewModel : ViewModel() {
     private val _characterList = MutableLiveData<List<CharacterModel>>()

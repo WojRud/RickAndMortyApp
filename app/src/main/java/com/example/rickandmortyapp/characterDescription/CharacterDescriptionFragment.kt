@@ -32,10 +32,10 @@ class CharacterDescriptionFragment : Fragment() {
         viewModel.setCharacterId(characterId)
 
         viewModel.characterData.observe(viewLifecycleOwner) { characterData ->
-            binding!!.textGetName.text = characterData.name
-            binding!!.textGetStatus.text = characterData.status
-            binding!!.textGetSpecies.text = characterData.species
-            binding!!.textGetGender.text = characterData.gender
+            binding?.textGetName?.text = characterData.name
+            binding?.textGetStatus?.text = characterData.status
+            binding?.textGetSpecies?.text = characterData.species
+            binding?.textGetGender?.text = characterData.gender
 
             Glide.with(this)
                 .load(characterData.image)

@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,109 +9,110 @@
         android:id="@+id/CharacterImage"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:layout_marginTop="5dp"
+        app:layout_constraintDimensionRatio="H,1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:src="@tools:sample/avatars" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars"
+        android:contentDescription="@string/characterDescriptionImage" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textName"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/CharacterImage">
+        android:layout_marginTop="16dp"
+        android:textColor="@color/black"
+        android:text="@string/characterName"
+        android:textAlignment="textEnd"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/textGetName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CharacterImage" />
 
-        <TextView
-            android:id="@+id/textName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:textAlignment="textEnd"
-            android:text="Name:"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toStartOf="@+id/textGetName"
-            app:layout_constraintStart_toStartOf="parent" />
+    <TextView
+        android:id="@+id/textGetName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="@string/descriptionCharacterName"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textName"
+        app:layout_constraintTop_toTopOf="@+id/textName" />
 
-        <TextView
-            android:id="@+id/textGetName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="Rick Sanchez"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textName"
-            app:layout_constraintTop_toTopOf="@+id/textName" />
+    <TextView
+        android:id="@+id/textStatus"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:textColor="@color/black"
+        android:text="@string/characterStatus"
+        android:textAlignment="textEnd"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/textGetStatus"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textName" />
 
-        <TextView
-            android:id="@+id/textStatus"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:textAlignment="textEnd"
-            android:text="Status:"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toStartOf="@+id/textGetStatus"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textName" />
+    <TextView
+        android:id="@+id/textGetStatus"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="@string/descriptionCharacterStatus"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textStatus"
+        app:layout_constraintTop_toTopOf="@+id/textStatus" />
 
-        <TextView
-            android:id="@+id/textGetStatus"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="Alive"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textStatus"
-            app:layout_constraintTop_toTopOf="@+id/textStatus" />
+    <TextView
+        android:id="@+id/textSpecies"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:textColor="@color/black"
+        android:text="@string/characterSpecies"
+        android:textAlignment="textEnd"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/textGetSpecies"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textStatus" />
 
-        <TextView
-            android:id="@+id/textSpecies"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:textAlignment="textEnd"
-            android:text="Species:"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toStartOf="@+id/textGetSpecies"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textStatus" />
+    <TextView
+        android:id="@+id/textGetSpecies"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="@string/descriptionCharacterSpecies"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textSpecies"
+        app:layout_constraintTop_toTopOf="@+id/textSpecies" />
 
-        <TextView
-            android:id="@+id/textGetSpecies"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="Human"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textSpecies"
-            app:layout_constraintTop_toTopOf="@+id/textSpecies" />
+    <TextView
+        android:id="@+id/textGender"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:textColor="@color/black"
+        android:text="@string/characterGender"
+        android:textAlignment="textEnd"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/textGetGender"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textSpecies" />
 
-        <TextView
-            android:id="@+id/textGender"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:textAlignment="textEnd"
-            android:text="Gender:"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toStartOf="@+id/textGetGender"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textSpecies" />
-
-        <TextView
-            android:id="@+id/textGetGender"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="Male"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textGender"
-            app:layout_constraintTop_toTopOf="@+id/textGender" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/textGetGender"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="@string/descriptionCharacterGender"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textGender"
+        app:layout_constraintTop_toTopOf="@+id/textGender" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

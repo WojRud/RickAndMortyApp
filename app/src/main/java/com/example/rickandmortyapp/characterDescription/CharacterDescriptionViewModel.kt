@@ -25,7 +25,5 @@ class CharacterDescriptionViewModel : ViewModel() {
                 Log.e("CharacterViewModel", "Request error: ${e.message}")
             }
         }
-
     }
-
 }

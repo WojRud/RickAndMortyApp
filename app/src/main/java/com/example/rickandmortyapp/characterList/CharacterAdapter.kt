@@ -1,13 +1,11 @@
 package com.example.rickandmortyapp.characterList
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.ListAdapter
-import com.example.rickandmortyapp.R
 import com.example.rickandmortyapp.data.CharacterModel
 import com.example.rickandmortyapp.databinding.ItemCharacterBinding
 
@@ -15,13 +13,17 @@ class CharacterAdapter(
     private val onItemClicked: (CharacterModel) -> Unit,
 ) : ListAdapter<CharacterModel, CharacterAdapter.ViewHolder>(CharacterDiffCallback) {
 
-    class ViewHolder(private var binding: ItemCharacterBinding) :
+    class ViewHolder(private val binding: ItemCharacterBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        val nameTextView = binding.characterText
-        fun bind(
-            character: CharacterModel
-        ) {
+
+        fun bind(character: CharacterModel) {
             binding.characterText.text = character.name
+            binding.characterText.setOnClickListener {
+                val navController = Navigation.findNavController(binding.root)
+                val action =
+                    CharactersListFragmentDirections.actionCharactersListFragmentToCharacterDescriptionFragment(character.id)
+                navController.navigate(action)
+            }
         }
     }
 
@@ -34,7 +36,6 @@ class CharacterAdapter(
             return oldItem == newItem
         }
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val viewHolder = ViewHolder(
             ItemCharacterBinding.inflate(
@@ -56,7 +57,6 @@ class CharacterAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = getItem(position)
         holder.bind(currentItem)
-        holder.nameTextView.text = currentItem.name
     }
 
     fun submitCharacterList(characterList: List<CharacterModel>) {

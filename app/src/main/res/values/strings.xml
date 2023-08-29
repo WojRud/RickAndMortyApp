@@ -1,6 +1,16 @@
 <resources>
     <string name="app_name">RickAndMortyApp</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="character_description_string">Character Description</string>
+    <string name="descriptionCharacterName">Rick Sanchez</string>
+    <string name="characterName">Name:</string>
+    <string name="descriptionCharacterStatus">Alive</string>
+    <string name="descriptionCharacterSpecies">Human</string>
+    <string name="descriptionCharacterGender">Male</string>
+    <string name="characterStatus">Status:</string>
+    <string name="characterSpecies">Species:</string>
+    <string name="characterGender">Gender:</string>
+    <string name="itemCharacterName">Character Name</string>
+    <string name="characterDescriptionImage">Image</string>
 </resources>

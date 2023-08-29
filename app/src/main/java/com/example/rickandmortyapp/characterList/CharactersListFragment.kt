@@ -5,12 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.rickandmortyapp.characterDescription.CharacterDescriptionViewModel
+import com.example.rickandmortyapp.characterList.CharactersListFragmentDirections.actionCharactersListFragmentToCharacterDescriptionFragment
 import com.example.rickandmortyapp.databinding.FragmentCharactersListBinding
 
 class CharactersListFragment : Fragment() {
@@ -20,7 +19,6 @@ class CharactersListFragment : Fragment() {
     private lateinit var viewModel: CharacterViewModel
     private lateinit var recyclerView: RecyclerView
     private lateinit var characterAdapter: CharacterAdapter
-    private val characterDescriptionViewModel: CharacterDescriptionViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,15 +37,13 @@ class CharactersListFragment : Fragment() {
         recyclerView = binding?.CharactersListRecyclerView!!
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        characterAdapter = CharacterAdapter { clickedCharacter ->
-            val characterId = clickedCharacter.id
+        characterAdapter = CharacterAdapter {
             val action =
-                CharactersListFragmentDirections.actionCharactersListFragmentToCharacterDescriptionFragment(
-                    characterId
+                actionCharactersListFragmentToCharacterDescriptionFragment(
+                    it.id
                 )
             view.findNavController().navigate(action)
         }
-
         recyclerView.adapter = characterAdapter
 
         viewModel = ViewModelProvider(this)[CharacterViewModel::class.java]
@@ -55,7 +51,6 @@ class CharactersListFragment : Fragment() {
         viewModel.characterList.observe(viewLifecycleOwner) { characters ->
             characterAdapter.submitCharacterList(characters)
         }
-
         viewModel.getCharacterData()
     }
 
