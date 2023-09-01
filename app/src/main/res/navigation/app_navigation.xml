@@ -24,6 +24,18 @@
             android:name="characterId"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/favoriteCharacterListFragment2"
+        android:name="com.example.rickandmortyapp.favoriteCharacter.FavoriteCharacterListFragment"
+        android:label="FavoriteCharacterListFragment" >
+        <action
+            android:id="@+id/action_favoriteCharacterListFragment2_to_favoriteCharacterDescriptionFragment"
+            app:destination="@id/favoriteCharacterDescriptionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteCharacterDescriptionFragment"
+        android:name="com.example.rickandmortyapp.favoriteCharacterDescription.FavoriteCharacterDescriptionFragment"
+        android:label="FavoriteCharacterDescriptionFragment" />
 </navigation>
 
 

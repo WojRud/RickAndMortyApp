@@ -13,4 +13,5 @@
     <string name="characterGender">Gender:</string>
     <string name="itemCharacterName">Character Name</string>
     <string name="characterDescriptionImage">Image</string>
+    <string name="character_add_image">Image</string>
 </resources>

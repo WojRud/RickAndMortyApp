@@ -37,12 +37,15 @@ class CharacterDescriptionFragment : Fragment() {
             binding?.textGetSpecies?.text = characterData.species
             binding?.textGetGender?.text = characterData.gender
 
-            Glide.with(this)
-                .load(characterData.image)
-                .into(binding!!.CharacterImage)
+            binding?.CharacterImage?.let { imageView ->
+                Glide.with(this)
+                    .load(characterData.image)
+                    .into(imageView)
+            }
+
+
 
         }
-
     }
 }
 

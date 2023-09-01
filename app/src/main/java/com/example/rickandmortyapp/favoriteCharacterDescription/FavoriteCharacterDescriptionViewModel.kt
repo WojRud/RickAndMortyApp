@@ -1,0 +1,4 @@
+package com.example.rickandmortyapp.favoriteCharacterDescription
+
+class FavoriteCharacterDescriptionViewModel {
+}

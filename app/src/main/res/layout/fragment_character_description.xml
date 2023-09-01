@@ -9,7 +9,6 @@
         android:id="@+id/CharacterImage"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        app:layout_constraintDimensionRatio="H,1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -44,15 +43,14 @@
         android:id="@+id/textStatus"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:textColor="@color/black"
         android:text="@string/characterStatus"
         android:textAlignment="textEnd"
+        android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/textGetStatus"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textName" />
+        app:layout_constraintTop_toBottomOf="@+id/textGetName" />
 
     <TextView
         android:id="@+id/textGetStatus"

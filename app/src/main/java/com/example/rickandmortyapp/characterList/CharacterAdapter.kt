@@ -1,29 +1,47 @@
 package com.example.rickandmortyapp.characterList
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.ListAdapter
 import com.example.rickandmortyapp.data.CharacterModel
+import com.example.rickandmortyapp.data.FavoriteCharacterModel
 import com.example.rickandmortyapp.databinding.ItemCharacterBinding
 
 class CharacterAdapter(
     private val onItemClicked: (CharacterModel) -> Unit,
 ) : ListAdapter<CharacterModel, CharacterAdapter.ViewHolder>(CharacterDiffCallback) {
+    private lateinit var mCharacterViewModel: CharacterViewModel
 
-    class ViewHolder(private val binding: ItemCharacterBinding) :
+    class ViewHolder(private val binding: ItemCharacterBinding, private val mCharacterViewModel: CharacterViewModel) :
         RecyclerView.ViewHolder(binding.root) {
 
+        @SuppressLint("ShowToast")
         fun bind(character: CharacterModel) {
             binding.characterText.text = character.name
             binding.characterText.setOnClickListener {
                 val navController = Navigation.findNavController(binding.root)
                 val action =
-                    CharactersListFragmentDirections.actionCharactersListFragmentToCharacterDescriptionFragment(character.id)
+                    CharactersListFragmentDirections.actionCharactersListFragmentToCharacterDescriptionFragment(
+                        character.id
+                    )
                 navController.navigate(action)
             }
+
+            binding.characterAddToFavorites.setOnClickListener {
+
+                val favCharacter = FavoriteCharacterModel(character.id, character.name, character.status, character.species, character.gender, character.image)
+                mCharacterViewModel.addCharacter(favCharacter)
+            //    Toast.makeText(CO TU DAĆ???, "ADDED", Toast.LENGTH_LONG).show
+
+            }
+
+
         }
     }
 
@@ -36,22 +54,17 @@ class CharacterAdapter(
             return oldItem == newItem
         }
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val viewHolder = ViewHolder(
+        return ViewHolder(
             ItemCharacterBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            )
+            ),
+            mCharacterViewModel
+
         )
-        viewHolder.itemView.setOnClickListener {
-            val position = viewHolder.adapterPosition
-            onItemClicked(getItem(position))
-        }
-        viewHolder.itemView.setOnLongClickListener {
-            true
-        }
-        return viewHolder
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

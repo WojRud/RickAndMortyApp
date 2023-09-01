@@ -1,14 +1,22 @@
 package com.example.rickandmortyapp.characterList
 
+import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
+import com.example.rickandmortyapp.data.CharacterDatabase
 import com.example.rickandmortyapp.data.CharacterModel
+import com.example.rickandmortyapp.data.CharacterRepository
+import com.example.rickandmortyapp.data.FavoriteCharacterModel
 import com.example.rickandmortyapp.data.RickAndMortyApi
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class CharacterViewModel : ViewModel() {
+class CharacterViewModel(application: Application) : AndroidViewModel(application) {
     private val _characterList = MutableLiveData<List<CharacterModel>>()
     val characterList: LiveData<List<CharacterModel>> = _characterList
+
+    private val readAllData: LiveData<List<FavoriteCharacterModel>>
+    private val repository: CharacterRepository
 
     fun getCharacterData() {
 
@@ -24,6 +32,18 @@ class CharacterViewModel : ViewModel() {
             }
         }
 
+    }
+
+    init {
+        val characterDao = CharacterDatabase.getDatabase(application).CharacterDao()
+        repository = CharacterRepository(characterDao)
+        readAllData = repository.readAllData
+    }
+
+    fun addCharacter(character: FavoriteCharacterModel) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.addCharacter(character)
+        }
     }
 
 }

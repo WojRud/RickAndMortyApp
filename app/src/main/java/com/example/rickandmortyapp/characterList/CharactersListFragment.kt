@@ -34,7 +34,7 @@ class CharactersListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        recyclerView = binding?.CharactersListRecyclerView!!
+        recyclerView = binding?.CharactersListRecyclerView ?: return
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         characterAdapter = CharacterAdapter {
