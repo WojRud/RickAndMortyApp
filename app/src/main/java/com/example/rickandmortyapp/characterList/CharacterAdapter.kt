@@ -3,8 +3,7 @@ package com.example.rickandmortyapp.characterList
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -12,16 +11,16 @@ import androidx.recyclerview.widget.ListAdapter
 import com.example.rickandmortyapp.data.CharacterModel
 import com.example.rickandmortyapp.data.FavoriteCharacterModel
 import com.example.rickandmortyapp.databinding.ItemCharacterBinding
+import com.example.rickandmortyapp.favoriteCharacter.FavoriteCharacterViewModel
 
 class CharacterAdapter(
-    private val onItemClicked: (CharacterModel) -> Unit,
+    private val onItemClicked: (CharacterModel) -> Unit
 ) : ListAdapter<CharacterModel, CharacterAdapter.ViewHolder>(CharacterDiffCallback) {
     private lateinit var mCharacterViewModel: CharacterViewModel
 
-    class ViewHolder(private val binding: ItemCharacterBinding, private val mCharacterViewModel: CharacterViewModel) :
+    class ViewHolder(private val binding: ItemCharacterBinding, private var mCharacterViewModel: CharacterViewModel) :
         RecyclerView.ViewHolder(binding.root) {
 
-        @SuppressLint("ShowToast")
         fun bind(character: CharacterModel) {
             binding.characterText.text = character.name
             binding.characterText.setOnClickListener {
@@ -33,14 +32,13 @@ class CharacterAdapter(
                 navController.navigate(action)
             }
 
+//            mCharacterViewModel = ViewModelProvider(this)[CharacterViewModel::class.java]
             binding.characterAddToFavorites.setOnClickListener {
 
                 val favCharacter = FavoriteCharacterModel(character.id, character.name, character.status, character.species, character.gender, character.image)
                 mCharacterViewModel.addCharacter(favCharacter)
-            //    Toast.makeText(CO TU DAĆ???, "ADDED", Toast.LENGTH_LONG).show
 
             }
-
 
         }
     }

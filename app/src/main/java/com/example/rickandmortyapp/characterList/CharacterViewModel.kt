@@ -35,7 +35,7 @@ class CharacterViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     init {
-        val characterDao = CharacterDatabase.getDatabase(application).CharacterDao()
+        val characterDao = CharacterDatabase.getDatabase(application).characterDao()
         repository = CharacterRepository(characterDao)
         readAllData = repository.readAllData
     }
@@ -46,7 +46,10 @@ class CharacterViewModel(application: Application) : AndroidViewModel(applicatio
         }
     }
 
+
+
 }
+
 
 
 

@@ -1,5 +1,6 @@
 package com.example.rickandmortyapp.data
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -34,21 +35,8 @@ interface CharacterDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addCharacter(character: FavoriteCharacterModel)
 
-    @Query("SELECT * FROM favorite_character ORDER BY id ASC")
-    fun getAll(): List<FavoriteCharacterModel>
-
-    @Query("SELECT * FROM user WHERE uid IN (:userIds)")
-    fun loadAllByIds(userIds: IntArray): List<FavoriteCharacterModel>
-
-    @Query("SELECT * FROM user WHERE first_name LIKE :first AND " +
-            "last_name LIKE :last LIMIT 1")
-    fun findByName(first: String, last: String): FavoriteCharacterModel
-
-    @Insert
-    fun insertAll(vararg users: FavoriteCharacterModel)
-
-    @Delete
-    fun delete(user: FavoriteCharacterModel)
+ //   @Query("SELECT * FROM favorite_table ORDER BY id ASC")
+    fun readAllData(): LiveData<List<FavoriteCharacterModel>>
 }
 
 object RickAndMortyApi {

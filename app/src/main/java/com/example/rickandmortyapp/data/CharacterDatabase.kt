@@ -9,10 +9,12 @@ import kotlinx.coroutines.internal.synchronized
 import java.time.chrono.HijrahChronology
 import java.time.chrono.HijrahChronology.INSTANCE
 
-@Database(entities = [FavoriteCharacterModel::class], version = 1, exportSchema = false)
+@Database(entities = [FavoriteCharacterModel::class],
+    version = 1,
+    exportSchema = false)
 abstract class CharacterDatabase : RoomDatabase() {
 
-    abstract fun CharacterDao() : CharacterDao /////////////////////////////////////////////////////////// SPRAWDZIĆ CZY NA PEWNO TO JEST DOBRE
+    abstract fun characterDao() : CharacterDao /////////////////////////////////////////////////////////// SPRAWDZIĆ CZY NA PEWNO TO JEST DOBRE
 
     companion object {
         @Volatile
@@ -28,7 +30,7 @@ abstract class CharacterDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     CharacterDatabase::class.java,
-                    "favorite_character"
+                    "favorite_database"
                 ).build()
                 INSTANCE = instance
                 return instance
