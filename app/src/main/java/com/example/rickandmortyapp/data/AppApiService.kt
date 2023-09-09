@@ -11,7 +11,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
-import retrofit2.http.Query
+import androidx.room.Query
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -32,11 +32,13 @@ interface AppInterface {
 
 @Dao
 interface CharacterDao {
+
+    @Query("SELECT * FROM favorite_table ORDER BY char_id ASC")
+    fun readAllData(): LiveData<List<FavoriteCharacterModel>>
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addCharacter(character: FavoriteCharacterModel)
 
- //   @Query("SELECT * FROM favorite_table ORDER BY id ASC")
-    fun readAllData(): LiveData<List<FavoriteCharacterModel>>
+
 }
 
 object RickAndMortyApi {

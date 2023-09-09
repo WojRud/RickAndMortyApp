@@ -14,32 +14,27 @@ import java.time.chrono.HijrahChronology.INSTANCE
     exportSchema = false)
 abstract class CharacterDatabase : RoomDatabase() {
 
-    abstract fun characterDao() : CharacterDao /////////////////////////////////////////////////////////// SPRAWDZIĆ CZY NA PEWNO TO JEST DOBRE
+    abstract fun characterDao() : CharacterDao
 
     companion object {
         @Volatile
         private var INSTANCE: CharacterDatabase? = null
 
-        @OptIn(InternalCoroutinesApi::class)
         fun getDatabase(context: Context): CharacterDatabase {
-            val tempInstance = INSTANCE
-            if (tempInstance != null) {
-                return tempInstance
-            }
-            synchronized(this) {
+            return INSTANCE ?: kotlin.synchronized(this) {
                 val instance = Room.databaseBuilder(
-                    context.applicationContext,
+                    context,
                     CharacterDatabase::class.java,
                     "favorite_database"
-                ).build()
+                )
+                    .createFromAsset("database/bus_schedule.db")
+                    .build()
                 INSTANCE = instance
-                return instance
+
+                instance
             }
         }
-
-
     }
-
 
 
 }

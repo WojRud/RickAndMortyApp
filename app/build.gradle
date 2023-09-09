@@ -2,7 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'androidx.navigation.safeargs' version '2.4.2'
-    id("com.google.devtools.ksp") version "1.8.10-1.0.9"
+    id 'com.google.devtools.ksp'
 }
 
 android {
@@ -73,8 +73,8 @@ dependencies {
 //    kapt("androidx.room:room-compiler:2.5.2")
     implementation("androidx.room:room-ktx:2.5.2")
 
-    annotationProcessor("androidx.room:room-compiler:2.5.2")
- //   ksp("androidx.room:room-compiler:2.5.2")
+ //   annotationProcessor("androidx.room:room-compiler:2.5.2")
+    ksp("androidx.room:room-compiler:2.5.2")
  //   implementation("androidx.room:room-rxjava2:2.5.2")
     implementation("androidx.room:room-rxjava3:2.5.2")
     implementation("androidx.room:room-guava:2.5.2")

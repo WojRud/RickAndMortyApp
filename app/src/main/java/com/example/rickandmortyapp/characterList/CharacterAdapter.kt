@@ -39,7 +39,6 @@ class CharacterAdapter(
                 mCharacterViewModel.addCharacter(favCharacter)
 
             }
-
         }
     }
 
