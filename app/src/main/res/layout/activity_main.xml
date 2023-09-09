@@ -18,6 +18,10 @@
         app:navGraph="@navigation/app_navigation"
         tools:layout="@layout/fragment_characters_list" />
 
+    TEST TEST
+    TEST TEST
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
