@@ -20,6 +20,33 @@ abstract class CharacterDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: CharacterDatabase? = null
 
+        @OptIn(InternalCoroutinesApi::class)
+        fun getDatabase(context: Context) : CharacterDatabase {
+            val tempInstance = INSTANCE
+            if (tempInstance != null) {
+                return tempInstance
+            }
+            synchronized(this) {
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    CharacterDatabase::class.java,
+                    "character_database"
+
+                ).build()
+                INSTANCE = instance
+                return instance
+            }
+        }
+
+
+
+
+
+
+
+
+
+        /*
         fun getDatabase(context: Context): CharacterDatabase {
             return INSTANCE ?: kotlin.synchronized(this) {
                 val instance = Room.databaseBuilder(
@@ -34,6 +61,10 @@ abstract class CharacterDatabase : RoomDatabase() {
                 instance
             }
         }
+         */
+
+
+
     }
 
 

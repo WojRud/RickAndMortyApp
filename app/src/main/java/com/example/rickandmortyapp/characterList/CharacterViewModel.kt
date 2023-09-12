@@ -15,8 +15,7 @@ class CharacterViewModel(application: Application) : AndroidViewModel(applicatio
     private val _characterList = MutableLiveData<List<CharacterModel>>()
     val characterList: LiveData<List<CharacterModel>> = _characterList
 
-    private val readAllData: LiveData<List<FavoriteCharacterModel>>
-    private val repository: CharacterRepository
+
 
     fun getCharacterData() {
 
@@ -34,17 +33,7 @@ class CharacterViewModel(application: Application) : AndroidViewModel(applicatio
 
     }
 
-    init {
-        val characterDao = CharacterDatabase.getDatabase(application).characterDao()
-        repository = CharacterRepository(characterDao)
-        readAllData = repository.readAllData
-    }
 
-    fun addCharacter(character: FavoriteCharacterModel) {
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.addCharacter(character)
-        }
-    }
 
 
 

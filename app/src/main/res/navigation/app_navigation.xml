@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_charactersListFragment_to_characterDescriptionFragment"
             app:destination="@id/characterDescriptionFragment" />
+        <action
+            android:id="@+id/action_charactersListFragment_to_favoriteCharacterListFragment"
+            app:destination="@id/favoriteCharacterListFragment" />
     </fragment>
     <fragment
         android:id="@+id/characterDescriptionFragment"
@@ -23,6 +26,24 @@
         <argument
             android:name="characterId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_characterDescriptionFragment_to_favoriteCharacterListFragment"
+            app:destination="@id/favoriteCharacterListFragment" />
+        <action
+            android:id="@+id/action_characterDescriptionFragment_to_charactersListFragment"
+            app:destination="@id/charactersListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteCharacterListFragment"
+        android:name="com.example.rickandmortyapp.favoriteCharacter.FavoriteCharacterListFragment"
+        android:label="fragment_favorite_character_list"
+        tools:layout="@layout/fragment_favorite_character_list" >
+        <action
+            android:id="@+id/action_favoriteCharacterListFragment_to_charactersListFragment"
+            app:destination="@id/charactersListFragment" />
+        <action
+            android:id="@+id/action_favoriteCharacterListFragment_to_characterDescriptionFragment"
+            app:destination="@id/characterDescriptionFragment" />
     </fragment>
 </navigation>
 

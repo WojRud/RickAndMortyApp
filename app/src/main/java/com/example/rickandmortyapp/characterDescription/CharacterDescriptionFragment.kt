@@ -6,8 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.example.rickandmortyapp.characterList.CharacterViewModel
+import com.example.rickandmortyapp.data.FavoriteCharacterModel
 import com.example.rickandmortyapp.databinding.FragmentCharacterDescriptionBinding
 
 class CharacterDescriptionFragment : Fragment() {
@@ -43,9 +46,24 @@ class CharacterDescriptionFragment : Fragment() {
                     .into(imageView)
             }
 
+            binding?.addToFavBtn?.setOnClickListener {
 
+                val favCharacter = FavoriteCharacterModel(
+                    characterData.id,
+                    characterData.name,
+                    characterData.status,
+                    characterData.species,
+                    characterData.gender,
+                    characterData.image
+                )
+                viewModel.addCharacter(favCharacter)
+
+
+            }
 
         }
+
+
     }
 }
 

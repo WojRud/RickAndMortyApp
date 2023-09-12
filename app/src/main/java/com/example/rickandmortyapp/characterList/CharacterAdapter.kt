@@ -16,9 +16,8 @@ import com.example.rickandmortyapp.favoriteCharacter.FavoriteCharacterViewModel
 class CharacterAdapter(
     private val onItemClicked: (CharacterModel) -> Unit
 ) : ListAdapter<CharacterModel, CharacterAdapter.ViewHolder>(CharacterDiffCallback) {
-    private lateinit var mCharacterViewModel: CharacterViewModel
 
-    class ViewHolder(private val binding: ItemCharacterBinding, private var mCharacterViewModel: CharacterViewModel) :
+    class ViewHolder(private val binding: ItemCharacterBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(character: CharacterModel) {
@@ -33,12 +32,14 @@ class CharacterAdapter(
             }
 
 //            mCharacterViewModel = ViewModelProvider(this)[CharacterViewModel::class.java]
-            binding.characterAddToFavorites.setOnClickListener {
+ /*           binding.characterAddToFavorites.setOnClickListener {
 
                 val favCharacter = FavoriteCharacterModel(character.id, character.name, character.status, character.species, character.gender, character.image)
                 mCharacterViewModel.addCharacter(favCharacter)
 
-            }
+
+          }
+           */
         }
     }
 
@@ -58,8 +59,7 @@ class CharacterAdapter(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            ),
-            mCharacterViewModel
+            )
 
         )
     }

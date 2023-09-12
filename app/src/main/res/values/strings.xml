@@ -14,4 +14,8 @@
     <string name="itemCharacterName">Character Name</string>
     <string name="characterDescriptionImage">Image</string>
     <string name="character_add_image">Image</string>
+    <string name="add_to_favorites">ADD TO FAVORITES</string>
+    <string name="bottom_navbar_list">List</string>
+    <string name="bottom_navbar_fav">Favorites</string>
+    <string name="bottom_navbar_opt">Option</string>
 </resources>
