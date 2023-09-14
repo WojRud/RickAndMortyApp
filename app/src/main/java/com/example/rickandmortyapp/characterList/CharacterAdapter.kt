@@ -30,16 +30,6 @@ class CharacterAdapter(
                     )
                 navController.navigate(action)
             }
-
-//            mCharacterViewModel = ViewModelProvider(this)[CharacterViewModel::class.java]
- /*           binding.characterAddToFavorites.setOnClickListener {
-
-                val favCharacter = FavoriteCharacterModel(character.id, character.name, character.status, character.species, character.gender, character.image)
-                mCharacterViewModel.addCharacter(favCharacter)
-
-
-          }
-           */
         }
     }
 

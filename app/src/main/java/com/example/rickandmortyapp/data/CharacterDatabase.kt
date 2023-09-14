@@ -43,28 +43,6 @@ abstract class CharacterDatabase : RoomDatabase() {
 
 
 
-
-
-
-        /*
-        fun getDatabase(context: Context): CharacterDatabase {
-            return INSTANCE ?: kotlin.synchronized(this) {
-                val instance = Room.databaseBuilder(
-                    context,
-                    CharacterDatabase::class.java,
-                    "favorite_database"
-                )
-                    .createFromAsset("database/bus_schedule.db")
-                    .build()
-                INSTANCE = instance
-
-                instance
-            }
-        }
-         */
-
-
-
     }
 
 

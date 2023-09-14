@@ -1,5 +1,6 @@
 package com.example.rickandmortyapp.data
 
+import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
@@ -34,15 +35,18 @@ interface AppInterface {
 interface CharacterDao {
 
     @Query("SELECT * FROM favorite_table ORDER BY char_id ASC")
-    fun readAllData(): LiveData<List<FavoriteCharacterModel>>
+    fun readAllData(name: String): LiveData<List<FavoriteCharacterModel>>                  //////////// A MOŻE TAK FLOW ZAMIOSAT LIVEDATA???????
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addCharacter(character: FavoriteCharacterModel)
-
 
 }
 
 object RickAndMortyApi {
     val retrofitService: AppInterface by lazy { retrofit.create(AppInterface::class.java) }
+}
+
+class FavoriteCharacterApplication : Application() {
+    val database: CharacterDatabase by lazy { CharacterDatabase.getDatabase(this) }
 }
 
 

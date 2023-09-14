@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.charactersListFragment,
-                R.id.characterDescriptionFragment,
+                R.id.favoriteCharacterListFragment,
                 R.id.favoriteCharacterListFragment
             )
         )
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.navigation_favorites -> {
-                    navController.navigate(R.id.characterDescriptionFragment)
+                    navController.navigate(R.id.favoriteCharacterListFragment)
                     true
                 }
 

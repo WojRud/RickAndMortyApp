@@ -58,12 +58,8 @@ class CharacterDescriptionFragment : Fragment() {
                 )
                 viewModel.addCharacter(favCharacter)
 
-
             }
-
         }
-
-
     }
 }
 
