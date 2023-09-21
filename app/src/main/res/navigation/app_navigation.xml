@@ -14,9 +14,6 @@
         <action
             android:id="@+id/action_charactersListFragment_to_characterDescriptionFragment"
             app:destination="@id/characterDescriptionFragment" />
-        <action
-            android:id="@+id/action_charactersListFragment_to_favoriteCharacterListFragment"
-            app:destination="@id/favoriteCharacterListFragment" />
     </fragment>
     <fragment
         android:id="@+id/characterDescriptionFragment"
@@ -26,12 +23,6 @@
         <argument
             android:name="characterId"
             app:argType="integer" />
-        <action
-            android:id="@+id/action_characterDescriptionFragment_to_charactersListFragment"
-            app:destination="@id/charactersListFragment" />
-        <action
-            android:id="@+id/action_characterDescriptionFragment_to_charactersListFragment2"
-            app:destination="@id/charactersListFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoriteCharacterListFragment"
@@ -39,21 +30,18 @@
         android:label="fragment_favorite_character_list"
         tools:layout="@layout/fragment_favorite_character_list" >
         <action
-            android:id="@+id/action_favoriteCharacterListFragment_to_charactersListFragment"
-            app:destination="@id/charactersListFragment" />
-        <action
-            android:id="@+id/action_favoriteCharacterListFragment_to_characterDescriptionFragment"
-            app:destination="@id/characterDescriptionFragment" />
-        <action
             android:id="@+id/action_favoriteCharacterListFragment_to_favoriteCharacterDescriptionFragment"
             app:destination="@id/favoriteCharacterDescriptionFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/favoriteCharacterDescriptionFragment"
         android:name="com.example.rickandmortyapp.favoriteCharacterDescription.FavoriteCharacterDescriptionFragment"
-        android:label="FavoriteCharacterDescriptionFragment" >
-
-    </fragment>
+        android:label="{stopName}"
+        tools:layout="@layout/fragment_favorite_character_description" />
+    <argument
+        android:name="stopName"
+        app:argType="string" />
 </navigation>
 
 

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
@@ -56,6 +57,13 @@ class CharacterDescriptionFragment : Fragment() {
                     characterData.gender,
                     characterData.image
                 )
+
+                val message = "DODANO"
+                val duration = Toast.LENGTH_SHORT // Możesz użyć Toast.LENGTH_LONG dla dłuższego czasu wyświetlania
+
+                val toast = Toast.makeText(context, message, duration)
+                toast.show()
+
                 viewModel.addCharacter(favCharacter)
 
             }

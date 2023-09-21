@@ -7,7 +7,11 @@ import kotlinx.coroutines.flow.Flow
 
 class CharacterRepository(private val characterDao: CharacterDao) {
 
-    val readAllData: LiveData<List<FavoriteCharacterModel>> = characterDao.readAllData()
+  //  val readAllData: LiveData<List<FavoriteCharacterModel>> = characterDao.readAllData()
+
+    val readAllData: Flow<List<FavoriteCharacterModel>> = characterDao.readAllData()
+
+
 
  //   val readAllData: List<FavoriteCharacterModel> = characterDao.getAll()
 

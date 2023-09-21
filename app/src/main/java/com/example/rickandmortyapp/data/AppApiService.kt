@@ -13,6 +13,8 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.StateFlow
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -35,7 +37,7 @@ interface AppInterface {
 interface CharacterDao {
 
     @Query("SELECT * FROM favorite_table ORDER BY char_id ASC")
-    fun readAllData(name: String): LiveData<List<FavoriteCharacterModel>>                  //////////// A MOŻE TAK FLOW ZAMIOSAT LIVEDATA???????
+    fun readAllData(): Flow<List<FavoriteCharacterModel>>                 //////////// A MOŻE TAK FLOW ZAMIOSAT LIVEDATA???????
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addCharacter(character: FavoriteCharacterModel)
 

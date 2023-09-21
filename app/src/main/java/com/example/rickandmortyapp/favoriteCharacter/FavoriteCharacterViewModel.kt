@@ -5,12 +5,45 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.rickandmortyapp.data.CharacterDao
 import com.example.rickandmortyapp.data.FavoriteCharacterModel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.asFlow
+import androidx.lifecycle.asFlow
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.launch
 
-class FavoriteCharacterViewModel(private val characterDao: CharacterDao): ViewModel() {
 
-    fun fullSchedule(name: String): LiveData<List<FavoriteCharacterModel>> = characterDao.readAllData()            //////////////////////  A MOŻE TAK FLOW ZAMIAST LIVEDATA??
+class FavoriteCharacterViewModel(private val characterDao: CharacterDao):ViewModel() {
 
-    fun scheduleForStopName(name: String): LiveData<List<FavoriteCharacterModel>> = characterDao.readAllData(name)
+
+    val _uiState = MutableStateFlow(FavoriteCharacterModel.Success(emptyList()))
+
+    val uiState: StateFlow<FavoriteCharacterModel> = _uiState
+
+
+    fun readAllData(): StateFlow<List<FavoriteCharacterModel>> = characterDao.readAllData()            //////////////////////  A MOŻE TAK FLOW ZAMIAST LIVEDATA??
+sealed class LatestNewsUiState {
+    data class Success(val news: List<FavoriteCharacterModel>): LatestNewsUiState()
+    data class Error(val exception: Throwable): LatestNewsUiState()
+}
+
+
+
+/*
+    fun readAllData(): Flow<List<FavoriteCharacterModel>> {
+        return characterDao.readAllData()
+            .asFlow()
+            .flowOn(Dispatchers.IO)
+    }
+ */
+
+
+
+//    fun scheduleForStopName(name: String): Flow<List<FavoriteCharacterModel>> = characterDao.readAllData()
 
     class FavoriteCharacterViewModelFactory(
         private val characterDao: CharacterDao
@@ -30,6 +63,7 @@ class FavoriteCharacterViewModel(private val characterDao: CharacterDao): ViewMo
 
 
 }
+
     /*
 
 

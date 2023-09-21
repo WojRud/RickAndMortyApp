@@ -8,19 +8,18 @@ import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.coroutineScope
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.rickandmortyapp.characterList.CharactersListFragmentDirections
 import com.example.rickandmortyapp.data.FavoriteCharacterApplication
 import com.example.rickandmortyapp.databinding.FragmentFavoriteCharacterListBinding
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 
 class FavoriteCharacterListFragment : Fragment() {
-
-    companion object {
-        var CHAR_NAME = "name"
-    }
 
     private var _binding: FragmentFavoriteCharacterListBinding? = null
     private val binding get() = _binding
@@ -29,20 +28,10 @@ class FavoriteCharacterListFragment : Fragment() {
 
     private lateinit var mFavoriteViewModel: FavoriteCharacterViewModel
 
-    private lateinit var name: String
-
     private val viewModel: FavoriteCharacterViewModel by activityViewModels {
         FavoriteCharacterViewModel.FavoriteCharacterViewModelFactory(
             (activity?.application as FavoriteCharacterApplication).database.characterDao()
         )
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        arguments?.let {
-            name = it.getString(CHAR_NAME).toString()
-        }
     }
 
     override fun onCreateView(
@@ -55,54 +44,53 @@ class FavoriteCharacterListFragment : Fragment() {
         _binding = FragmentFavoriteCharacterListBinding.inflate(inflater, container, false)
         //       val view = binding?.root
         //     return view
-        return binding?.root
+        val view = binding?.root
+        return view
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recyclerView = binding.CharactersFavoriteListRecyclerView
+        recyclerView = binding!!.CharactersFavoriteListRecyclerView          /////////////////////////////////////  WYKRZYKNIKI POPRAWIĆ      ///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
 //        val favoriteCharacterAdapter = FavoriteCharacterAdapter({})
 
         val favoriteCharacterAdapter = FavoriteCharacterAdapter {
-            val action = FavoriteCharacterListFragmentDirections
-                .actionFavoriteCharacterListFragmentToFavoriteCharacterDescriptionFragment(        //   action_favoriteCharacterListFragment_to_favoriteCharacterDescriptionFragment
-                    stopName = it.name
-                )
-            view.findNavController().navigate(action)
+
+            val navController = Navigation.findNavController(binding!!.root)
+            val action =
+                CharactersListFragmentDirections
+                    .actionCharactersListFragmentToCharacterDescriptionFragment(
+                        it.id
+                    )
+            navController.navigate(action)
 
 
-            // by passing in the stop name, filtered results are returned,
-            // and tapping rows won't trigger navigation
-            recyclerView.adapter = favoriteCharacterAdapter
-            lifecycle.coroutineScope.launch {
-                viewModel.fullSchedule(name)
-                    .collect() {           ///////////////////////// Z VIEWMODELA
-                        favoriteCharacterAdapter.submitList(it)
-                    }
-            }
+
+    //        val action = FavoriteCharacterListFragmentDirections
+      //          .actionFavoriteCharacterListFragmentToFavoriteCharacterDescriptionFragment(
+         //           stopName = it.name
+        //      )
+         //   view.findNavController().navigate(action)
+
+
         }
 
-        override fun onDestroyView() {
-            super.onDestroyView()
-            _binding = null
+        recyclerView.adapter = favoriteCharacterAdapter
+        lifecycle.coroutineScope.launch {
+            viewModel.readAllData().collect() {
+                    favoriteCharacterAdapter.submitList(it)
+                }
         }
-
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 /*
@@ -124,11 +112,6 @@ class FavoriteCharacterListFragment : Fragment() {
 
 //      _binding = fragmentBinding
 //    return fragmentBinding.root
-
-
-
-
-
 
 
 /*

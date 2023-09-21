@@ -20,7 +20,7 @@ class CharacterDescriptionViewModel(application: Application) : AndroidViewModel
     val characterData: LiveData<CharacterModel>
         get() = _characterData
 
-    private val readAllData: LiveData<List<FavoriteCharacterModel>>          //  //////////////////////         LUB  CharacterModel
+ //   private val readAllData: LiveData<List<FavoriteCharacterModel>>          //  //////////////////////         LUB  CharacterModel
     private val repository: CharacterRepository
 
     fun setCharacterId(id: Int) {
@@ -39,7 +39,7 @@ class CharacterDescriptionViewModel(application: Application) : AndroidViewModel
     init {
         val characterDao = CharacterDatabase.getDatabase(application).characterDao()
         repository = CharacterRepository(characterDao)
-        readAllData = repository.readAllData
+    //    readAllData = repository.readAllData
     }
 
     fun addCharacter(character: FavoriteCharacterModel) {

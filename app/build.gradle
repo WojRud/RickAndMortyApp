@@ -49,6 +49,10 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     implementation 'androidx.activity:activity-ktx:1.7.2'
 
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2" // Gdzie x.x to wersja AndroidX Lifecycle
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.6.2"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4" // Gdzie x.x to wersja Kotlin Coroutines
+
     // fragment & navigation
     implementation "androidx.fragment:fragment-ktx:1.6.1"
     implementation "androidx.navigation:navigation-fragment-ktx:2.6.0"

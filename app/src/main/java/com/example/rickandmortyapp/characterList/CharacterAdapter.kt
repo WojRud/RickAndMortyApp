@@ -25,7 +25,8 @@ class CharacterAdapter(
             binding.characterText.setOnClickListener {
                 val navController = Navigation.findNavController(binding.root)
                 val action =
-                    CharactersListFragmentDirections.actionCharactersListFragmentToCharacterDescriptionFragment(
+                    CharactersListFragmentDirections
+                        .actionCharactersListFragmentToCharacterDescriptionFragment(
                         character.id
                     )
                 navController.navigate(action)
