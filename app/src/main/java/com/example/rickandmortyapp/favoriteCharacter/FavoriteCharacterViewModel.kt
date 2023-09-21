@@ -11,8 +11,10 @@ import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 
@@ -20,16 +22,11 @@ import kotlinx.coroutines.launch
 class FavoriteCharacterViewModel(private val characterDao: CharacterDao):ViewModel() {
 
 
-    val _uiState = MutableStateFlow(FavoriteCharacterModel.Success(emptyList()))
 
-    val uiState: StateFlow<FavoriteCharacterModel> = _uiState
+    val readAllData: StateFlow<List<FavoriteCharacterModel>> =
+        characterDao.readAllData().stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
 
-
-    fun readAllData(): StateFlow<List<FavoriteCharacterModel>> = characterDao.readAllData()            //////////////////////  A MOŻE TAK FLOW ZAMIAST LIVEDATA??
-sealed class LatestNewsUiState {
-    data class Success(val news: List<FavoriteCharacterModel>): LatestNewsUiState()
-    data class Error(val exception: Throwable): LatestNewsUiState()
-}
+ //   fun readAllData(): StateFlow<List<FavoriteCharacterModel>> = characterDao.readAllData()            //////////////////////  A MOŻE TAK FLOW ZAMIAST LIVEDATA??
 
 
 

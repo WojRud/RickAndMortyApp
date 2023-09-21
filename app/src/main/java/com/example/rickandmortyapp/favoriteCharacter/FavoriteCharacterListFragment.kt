@@ -66,8 +66,6 @@ class FavoriteCharacterListFragment : Fragment() {
                     )
             navController.navigate(action)
 
-
-
     //        val action = FavoriteCharacterListFragmentDirections
       //          .actionFavoriteCharacterListFragmentToFavoriteCharacterDescriptionFragment(
          //           stopName = it.name
@@ -79,7 +77,7 @@ class FavoriteCharacterListFragment : Fragment() {
 
         recyclerView.adapter = favoriteCharacterAdapter
         lifecycle.coroutineScope.launch {
-            viewModel.readAllData().collect() {
+            viewModel.readAllData.collect() {
                     favoriteCharacterAdapter.submitList(it)
                 }
         }
