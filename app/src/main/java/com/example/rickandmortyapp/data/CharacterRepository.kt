@@ -19,20 +19,7 @@ class CharacterRepository(private val characterDao: CharacterDao) {
         characterDao.addCharacter(character)
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    suspend fun getCharacterById(id: Int): FavoriteCharacterModel? {
+        return characterDao.getCharacterById(id)
+    }
 }

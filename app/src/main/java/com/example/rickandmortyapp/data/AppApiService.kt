@@ -41,6 +41,9 @@ interface CharacterDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addCharacter(character: FavoriteCharacterModel)
 
+    @Query("SELECT * FROM favorite_table WHERE char_id = :id")
+    fun getCharacterById(id: Int): FavoriteCharacterModel?
+
 }
 
 object RickAndMortyApi {

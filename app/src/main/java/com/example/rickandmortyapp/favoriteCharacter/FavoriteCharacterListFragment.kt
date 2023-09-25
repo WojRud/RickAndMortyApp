@@ -5,17 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.coroutineScope
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.rickandmortyapp.characterList.CharactersListFragmentDirections
 import com.example.rickandmortyapp.data.FavoriteCharacterApplication
 import com.example.rickandmortyapp.databinding.FragmentFavoriteCharacterListBinding
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 
@@ -51,27 +49,31 @@ class FavoriteCharacterListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recyclerView = binding!!.CharactersFavoriteListRecyclerView          /////////////////////////////////////  WYKRZYKNIKI POPRAWIĆ      ///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        recyclerView = binding!!.CharactersFavoriteListRecyclerView          /////////////////////////////////////  WYKRZYKNIKI POPRAWIĆ      ///!!!!!!!!!!!!!!!!!!!!!!!!!!!////////////////////!!!!!!!!!!!!!
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
 //        val favoriteCharacterAdapter = FavoriteCharacterAdapter({})
 
         val favoriteCharacterAdapter = FavoriteCharacterAdapter {
 
-            val navController = Navigation.findNavController(binding!!.root)
+            val message = "CLICK"
+            val duration = Toast.LENGTH_SHORT
+            val toast = Toast.makeText(context, message, duration)
+            toast.show()
+
+            val navControllers = Navigation.findNavController(binding!!.root)
             val action =
-                CharactersListFragmentDirections
-                    .actionCharactersListFragmentToCharacterDescriptionFragment(
+                FavoriteCharacterListFragmentDirections
+                    .actionFavoriteCharacterListFragment2ToFavoriteCharacterDescriptionFragment2 (           // actionFavoriteCharacterListFragmentToFavoriteCharacterDescriptionFragment      ??????????? CO TU SIE DZIEJE?????????
                         it.id
                     )
-            navController.navigate(action)
+            navControllers.navigate(action)
 
     //        val action = FavoriteCharacterListFragmentDirections
       //          .actionFavoriteCharacterListFragmentToFavoriteCharacterDescriptionFragment(
          //           stopName = it.name
         //      )
          //   view.findNavController().navigate(action)
-
 
         }
 

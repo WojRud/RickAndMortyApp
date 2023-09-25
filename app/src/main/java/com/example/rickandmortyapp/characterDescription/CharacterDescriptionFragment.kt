@@ -59,7 +59,7 @@ class CharacterDescriptionFragment : Fragment() {
                 )
 
                 val message = "DODANO"
-                val duration = Toast.LENGTH_SHORT // Możesz użyć Toast.LENGTH_LONG dla dłuższego czasu wyświetlania
+                val duration = Toast.LENGTH_SHORT
 
                 val toast = Toast.makeText(context, message, duration)
                 toast.show()
