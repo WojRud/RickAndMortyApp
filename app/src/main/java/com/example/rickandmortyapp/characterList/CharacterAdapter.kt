@@ -1,17 +1,13 @@
 package com.example.rickandmortyapp.characterList
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.ListAdapter
 import com.example.rickandmortyapp.data.CharacterModel
-import com.example.rickandmortyapp.data.FavoriteCharacterModel
 import com.example.rickandmortyapp.databinding.ItemCharacterBinding
-import com.example.rickandmortyapp.favoriteCharacter.FavoriteCharacterViewModel
 
 class CharacterAdapter(
     private val onItemClicked: (CharacterModel) -> Unit
@@ -27,8 +23,8 @@ class CharacterAdapter(
                 val action =
                     CharactersListFragmentDirections
                         .actionCharactersListFragmentToCharacterDescriptionFragment(
-                        character.id
-                    )
+                            character.id
+                        )
                 navController.navigate(action)
             }
         }

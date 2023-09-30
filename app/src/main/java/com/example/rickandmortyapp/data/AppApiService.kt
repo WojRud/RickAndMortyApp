@@ -1,9 +1,7 @@
 package com.example.rickandmortyapp.data
 
 import android.app.Application
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import com.squareup.moshi.Moshi
@@ -14,7 +12,6 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.StateFlow
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -37,13 +34,16 @@ interface AppInterface {
 interface CharacterDao {
 
     @Query("SELECT * FROM favorite_table ORDER BY char_id ASC")
-    fun readAllData(): Flow<List<FavoriteCharacterModel>>                 //////////// A MOŻE TAK FLOW ZAMIOSAT LIVEDATA???????
+    fun readAllData(): Flow<List<FavoriteCharacterModel>>
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addCharacter(character: FavoriteCharacterModel)
 
-    @Query("SELECT * FROM favorite_table WHERE char_id = :id")
-    fun getCharacterById(id: Int): FavoriteCharacterModel?
+    @Query("SELECT char_id, char_name, char_status, char_species, char_gender, char_image FROM favorite_table WHERE char_id = :id")
+    fun getCharacterById(id: Int): Flow<FavoriteCharacterModel>
 
+    @Query("DELETE FROM favorite_table WHERE char_id = :id")
+    suspend fun deleteCharacterById(id: Int)
 }
 
 object RickAndMortyApi {

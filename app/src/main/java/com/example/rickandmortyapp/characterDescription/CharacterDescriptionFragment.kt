@@ -7,10 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
-import com.example.rickandmortyapp.characterList.CharacterViewModel
+import com.example.rickandmortyapp.data.CharacterModel
 import com.example.rickandmortyapp.data.FavoriteCharacterModel
 import com.example.rickandmortyapp.databinding.FragmentCharacterDescriptionBinding
 
@@ -35,28 +35,33 @@ class CharacterDescriptionFragment : Fragment() {
 
         viewModel.setCharacterId(characterId)
 
-        viewModel.characterData.observe(viewLifecycleOwner) { characterData ->
-            binding?.textGetName?.text = characterData.name
-            binding?.textGetStatus?.text = characterData.status
-            binding?.textGetSpecies?.text = characterData.species
-            binding?.textGetGender?.text = characterData.gender
+        viewModel.characterData
+            .asLiveData()
+            .observe(viewLifecycleOwner) { characterData: CharacterModel? ->
+
+            binding?.textGetName?.text = characterData?.name
+            binding?.textGetStatus?.text = characterData?.status
+            binding?.textGetSpecies?.text = characterData?.species
+            binding?.textGetGender?.text = characterData?.gender
 
             binding?.CharacterImage?.let { imageView ->
                 Glide.with(this)
-                    .load(characterData.image)
+                    .load(characterData?.image)
                     .into(imageView)
             }
 
             binding?.addToFavBtn?.setOnClickListener {
 
-                val favCharacter = FavoriteCharacterModel(
-                    characterData.id,
-                    characterData.name,
-                    characterData.status,
-                    characterData.species,
-                    characterData.gender,
-                    characterData.image
-                )
+                val favCharacter = characterData?.let { it1 ->
+                    FavoriteCharacterModel(
+                        it1.id,
+                        characterData.name,
+                        characterData.status,
+                        characterData.species,
+                        characterData.gender,
+                        characterData.image
+                    )
+                }
 
                 val message = "DODANO"
                 val duration = Toast.LENGTH_SHORT
@@ -64,7 +69,9 @@ class CharacterDescriptionFragment : Fragment() {
                 val toast = Toast.makeText(context, message, duration)
                 toast.show()
 
-                viewModel.addCharacter(favCharacter)
+                if (favCharacter != null) {
+                    viewModel.addCharacter(favCharacter)
+                }
 
             }
         }

@@ -37,11 +37,15 @@
     <fragment
         android:id="@+id/favoriteCharacterDescriptionFragment"
         android:name="com.example.rickandmortyapp.favoriteCharacterDescription.FavoriteCharacterDescriptionFragment"
-        android:label="{stopName}"
-        tools:layout="@layout/fragment_favorite_character_description" />
+        android:label="{favoriteCharacterId}"
+        tools:layout="@layout/fragment_favorite_character_description" >
     <argument
-        android:name="stopName"
+        android:name="favoriteCharacterId"
         app:argType="string" />
+        <action
+            android:id="@+id/action_favoriteCharacterDescriptionFragment_to_favoriteCharacterListFragment"
+            app:destination="@id/favoriteCharacterListFragment" />
+    </fragment>
 </navigation>
 
 

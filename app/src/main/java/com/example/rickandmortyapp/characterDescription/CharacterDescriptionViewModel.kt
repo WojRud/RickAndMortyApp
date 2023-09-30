@@ -13,14 +13,16 @@ import com.example.rickandmortyapp.data.CharacterRepository
 import com.example.rickandmortyapp.data.FavoriteCharacterModel
 import com.example.rickandmortyapp.data.RickAndMortyApi
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
 class CharacterDescriptionViewModel(application: Application) : AndroidViewModel(application) {
-    private val _characterData = MutableLiveData<CharacterModel>()
-    val characterData: LiveData<CharacterModel>
+    private val _characterData = MutableStateFlow<CharacterModel?>(null)
+    val characterData: Flow<CharacterModel?>
+
         get() = _characterData
 
- //   private val readAllData: LiveData<List<FavoriteCharacterModel>>          //  //////////////////////         LUB  CharacterModel
     private val repository: CharacterRepository
 
     fun setCharacterId(id: Int) {
@@ -39,7 +41,6 @@ class CharacterDescriptionViewModel(application: Application) : AndroidViewModel
     init {
         val characterDao = CharacterDatabase.getDatabase(application).characterDao()
         repository = CharacterRepository(characterDao)
-    //    readAllData = repository.readAllData
     }
 
     fun addCharacter(character: FavoriteCharacterModel) {
@@ -47,5 +48,4 @@ class CharacterDescriptionViewModel(application: Application) : AndroidViewModel
             repository.addCharacter(character)
         }
     }
-
 }

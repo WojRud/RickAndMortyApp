@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.coroutineScope
@@ -16,15 +15,12 @@ import com.example.rickandmortyapp.data.FavoriteCharacterApplication
 import com.example.rickandmortyapp.databinding.FragmentFavoriteCharacterListBinding
 import kotlinx.coroutines.launch
 
-
 class FavoriteCharacterListFragment : Fragment() {
 
     private var _binding: FragmentFavoriteCharacterListBinding? = null
     private val binding get() = _binding
 
     private lateinit var recyclerView: RecyclerView
-
-    private lateinit var mFavoriteViewModel: FavoriteCharacterViewModel
 
     private val viewModel: FavoriteCharacterViewModel by activityViewModels {
         FavoriteCharacterViewModel.FavoriteCharacterViewModelFactory(
@@ -37,51 +33,34 @@ class FavoriteCharacterListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): FrameLayout? {
-        //   val fragmentBinding = FragmentFavoriteCharacterListBinding.inflate(inflater, container, false)
-
         _binding = FragmentFavoriteCharacterListBinding.inflate(inflater, container, false)
-        //       val view = binding?.root
-        //     return view
         val view = binding?.root
         return view
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recyclerView = binding!!.CharactersFavoriteListRecyclerView          /////////////////////////////////////  WYKRZYKNIKI POPRAWIĆ      ///!!!!!!!!!!!!!!!!!!!!!!!!!!!////////////////////!!!!!!!!!!!!!
+
+        recyclerView =
+            binding!!.CharactersFavoriteListRecyclerView                        /////////////////////////////////////  WYKRZYKNIKI POPRAWIĆ      ///!!!!!!!!!!!!!!!!!!!!!!!!!!!////////////////////!!!!!!!!!!!!!
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-//        val favoriteCharacterAdapter = FavoriteCharacterAdapter({})
-
         val favoriteCharacterAdapter = FavoriteCharacterAdapter {
-
-            val message = "CLICK"
-            val duration = Toast.LENGTH_SHORT
-            val toast = Toast.makeText(context, message, duration)
-            toast.show()
-
-            val navControllers = Navigation.findNavController(binding!!.root)
+            val navControllers =
+                binding?.root?.let { it1 -> Navigation.findNavController(it1) }
             val action =
                 FavoriteCharacterListFragmentDirections
-                    .actionFavoriteCharacterListFragment2ToFavoriteCharacterDescriptionFragment2 (           // actionFavoriteCharacterListFragmentToFavoriteCharacterDescriptionFragment      ??????????? CO TU SIE DZIEJE?????????
-                        it.id
+                    .actionFavoriteCharacterListFragmentToFavoriteCharacterDescriptionFragment(
+                        it.id.toString()
                     )
-            navControllers.navigate(action)
-
-    //        val action = FavoriteCharacterListFragmentDirections
-      //          .actionFavoriteCharacterListFragmentToFavoriteCharacterDescriptionFragment(
-         //           stopName = it.name
-        //      )
-         //   view.findNavController().navigate(action)
-
+            navControllers?.navigate(action)
         }
 
         recyclerView.adapter = favoriteCharacterAdapter
         lifecycle.coroutineScope.launch {
             viewModel.readAllData.collect() {
-                    favoriteCharacterAdapter.submitList(it)
-                }
+                favoriteCharacterAdapter.submitList(it)
+            }
         }
     }
 
@@ -89,94 +68,5 @@ class FavoriteCharacterListFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 }
 
-
-/*
-        val adapter = FavoriteCharacterAdapter()
-        //    val recyclerView: view.recyclerview
-        val recyclerView = fragmentBinding.recyclerview
-
-        val recyclerVIEW = view.rec
-
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-
-        mFavoriteViewModel = ViewModelProvider(this)[FavoriteCharacterViewModel::class.java]
-        mFavoriteViewModel.readAllData.observe(viewLifecycleOwner, Observer { favoriteCharacterModel ->
-            adapter.setData(favoriteCharacterModel)
-        })
-
- */
-
-//      _binding = fragmentBinding
-//    return fragmentBinding.root
-
-
-/*
-class FavoriteCharacterListFragment : Fragment() {
-    private lateinit var itemViewModel: ItemViewModel
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: ItemAdapter
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_item, container, false)
-
-        recyclerView = view.findViewById(R.id.recyclerview)
-        adapter = ItemAdapter(emptyList()) // Pusty adapter na początek
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-
-        itemViewModel = ViewModelProvider(this, ItemViewModelFactory(itemDao)).get(ItemViewModel::class.java)
-
-        itemViewModel.allItems.observe(viewLifecycleOwner, Observer { items ->
-            // Aktualizuj adapter za pomocą nowych danych
-            adapter.setItems(items)
-        })
-
-        return view
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-class FavoriteCharacterListFragment : Fragment() {
-    private var _binding: FragmentFavoriteCharacterListBinding? = null
-    private val binding get() = _binding
-
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: FavoriteCharacterAdapter
-    private lateinit var viewModel: FavoriteCharacterViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        val fragmentBinding = FragmentFavoriteCharacterListBinding.inflate(inflater, container, false)
-
-        _binding = fragmentBinding
-        return fragmentBinding.root
-    }
-
-    val adapter = FavoriteCharacterAdapter()
-    val recyclerView = view.recyclerview
-    recyclerView.adapter = adapter
-
-
-}
-
- */

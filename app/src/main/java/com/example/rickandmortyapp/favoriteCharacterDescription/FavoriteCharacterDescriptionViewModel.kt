@@ -1,12 +1,30 @@
 package com.example.rickandmortyapp.favoriteCharacterDescription
 
 import androidx.lifecycle.ViewModel
-import com.example.rickandmortyapp.data.CharacterRepository
+import androidx.lifecycle.ViewModelProvider
+import com.example.rickandmortyapp.data.CharacterDao
 import com.example.rickandmortyapp.data.FavoriteCharacterModel
+import kotlinx.coroutines.flow.Flow
 
-class FavoriteCharacterDescriptionViewModel(private val repository: CharacterRepository) : ViewModel() {
-
-    suspend fun getCharacterById(id: Int): FavoriteCharacterModel? {
-        return repository.getCharacterById(id)
+class FavoriteCharacterDescriptionViewModel(private val characterDao: CharacterDao) : ViewModel() {
+    fun getCharacterById(id: Int): Flow<FavoriteCharacterModel> {
+        return characterDao.getCharacterById(id)
     }
 }
+
+class FavoriteCharacterDescriptionViewModelFactory(private val characterDao: CharacterDao) :
+    ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(FavoriteCharacterDescriptionViewModel::class.java)) {
+            return FavoriteCharacterDescriptionViewModel(characterDao) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
+    }
+}
+
+
+
+
+
+
+

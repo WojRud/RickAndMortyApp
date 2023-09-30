@@ -1,6 +1,5 @@
 package com.example.rickandmortyapp.data
 
-import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -8,9 +7,6 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "favorite_table")
 data class FavoriteCharacterModel(
-
-    //     @PrimaryKey @ColumnInfo(name = "char_id") val id: Int
-
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "char_id") val id: Int,
     @ColumnInfo(name = "char_name") val name: String,
