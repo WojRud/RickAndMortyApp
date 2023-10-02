@@ -15,16 +15,12 @@ class FavoriteCharacterAdapter(
 
     companion object {
         private val DiffCallback = object : DiffUtil.ItemCallback<FavoriteCharacterModel>() {
-            override fun areItemsTheSame(
-                oldItem: FavoriteCharacterModel,
-                newItem: FavoriteCharacterModel
+            override fun areItemsTheSame(oldItem: FavoriteCharacterModel, newItem: FavoriteCharacterModel
             ): Boolean {
                 return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(
-                oldItem: FavoriteCharacterModel,
-                newItem: FavoriteCharacterModel
+            override fun areContentsTheSame(oldItem: FavoriteCharacterModel, newItem: FavoriteCharacterModel
             ): Boolean {
                 return oldItem == newItem
             }
@@ -53,9 +49,8 @@ class FavoriteCharacterAdapter(
     class FavCharViewHolder(
         private var binding: ItemCharacterBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        @SuppressLint("SimpleDateFormat")
-        fun bind(favoriteCharacterModel: FavoriteCharacterModel) {
-            binding.characterText.text = favoriteCharacterModel.name
+        fun bind(favCharacterModel: FavoriteCharacterModel) {
+            binding.characterText.text = favCharacterModel.name
         }
     }
 }

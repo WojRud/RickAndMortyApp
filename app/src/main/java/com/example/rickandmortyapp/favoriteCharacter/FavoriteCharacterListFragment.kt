@@ -34,32 +34,32 @@ class FavoriteCharacterListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): FrameLayout? {
         _binding = FragmentFavoriteCharacterListBinding.inflate(inflater, container, false)
-        val view = binding?.root
-        return view
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        recyclerView =
-            binding!!.CharactersFavoriteListRecyclerView                        /////////////////////////////////////  WYKRZYKNIKI POPRAWIĆ      ///!!!!!!!!!!!!!!!!!!!!!!!!!!!////////////////////!!!!!!!!!!!!!
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding?.apply {
 
-        val favoriteCharacterAdapter = FavoriteCharacterAdapter {
-            val navControllers =
-                binding?.root?.let { it1 -> Navigation.findNavController(it1) }
-            val action =
-                FavoriteCharacterListFragmentDirections
-                    .actionFavoriteCharacterListFragmentToFavoriteCharacterDescriptionFragment(
-                        it.id.toString()
-                    )
-            navControllers?.navigate(action)
-        }
+            recyclerView = CharactersFavoriteListRecyclerView
+            recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        recyclerView.adapter = favoriteCharacterAdapter
-        lifecycle.coroutineScope.launch {
-            viewModel.readAllData.collect() {
-                favoriteCharacterAdapter.submitList(it)
+            val favoriteCharacterAdapter = FavoriteCharacterAdapter {
+                val characterId = it.id.toString()
+                val navController = Navigation.findNavController(requireView())
+                val action = FavoriteCharacterListFragmentDirections
+                        .actionFavoriteCharacterListFragmentToFavoriteCharacterDescriptionFragment(
+                            characterId
+                        )
+                navController.navigate(action)
+            }
+
+            recyclerView.adapter = favoriteCharacterAdapter
+            lifecycle.coroutineScope.launch {
+                viewModel.readAllData.collect() {
+                    favoriteCharacterAdapter.submitList(it)
+                }
             }
         }
     }

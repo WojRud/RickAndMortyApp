@@ -20,14 +20,6 @@ class CharacterViewModel(application: Application) : AndroidViewModel(applicatio
 
                 _characterList.postValue(listResult)
 
-                /*
-                if (listResult.isNotEmpty()) {
-                    _characterList.value = listResult.first()
-                } else {
-                    _characterList.value = null
-                }
-                 */
-
             } catch (e: Exception) {
                 Log.e("CharacterViewModel", "Request error: ${e.message}")
             }

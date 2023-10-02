@@ -24,61 +24,50 @@ class FavoriteCharacterDescriptionFragment : Fragment() {
     private lateinit var viewModel: FavoriteCharacterDescriptionViewModel
 
     private var _binding: FragmentFavoriteCharacterDescriptionBinding? = null
+    private val binding get() = _binding
 
     private lateinit var characterDao: CharacterDao
-
-    private val binding get() = _binding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val fragmentBinding =
-            FragmentFavoriteCharacterDescriptionBinding.inflate(inflater, container, false)
+        val fragmentBinding = FragmentFavoriteCharacterDescriptionBinding.inflate(inflater, container, false)
 
         _binding = fragmentBinding
 
         val favoriteCharacterId = args.favoriteCharacterId.toInt()
 
-        characterDao =
-            (activity?.application as FavoriteCharacterApplication).database.characterDao()
+        characterDao = (activity?.application as FavoriteCharacterApplication).database.characterDao()
 
         val viewModelFactory = FavoriteCharacterDescriptionViewModelFactory(characterDao)
-        viewModel =
-            ViewModelProvider(
-                this,
-                viewModelFactory
-            )[FavoriteCharacterDescriptionViewModel::class.java]
+        viewModel = ViewModelProvider(this, viewModelFactory)[FavoriteCharacterDescriptionViewModel::class.java]
 
         viewModel.getCharacterById(favoriteCharacterId)
             .asLiveData()
-            .observe(viewLifecycleOwner) { favoriteCharacterDetails: FavoriteCharacterModel?  ->
+            .observe(viewLifecycleOwner) { favoriteCharacterDetails: FavoriteCharacterModel? ->
 
-                binding?.textGetName?.text = favoriteCharacterDetails?.name
-                binding?.textGetStatus?.text = favoriteCharacterDetails?.status
-                binding?.textGetSpecies?.text = favoriteCharacterDetails?.species
-                binding?.textGetGender?.text = favoriteCharacterDetails?.gender
+                binding?.apply {
+                    textGetName.text = favoriteCharacterDetails?.name
+                    textGetStatus.text = favoriteCharacterDetails?.status
+                    textGetSpecies.text = favoriteCharacterDetails?.species
+                    textGetGender.text = favoriteCharacterDetails?.gender
 
-                binding?.CharacterImage?.let { imageView ->
-                    Glide.with(this)
-                        .load(favoriteCharacterDetails?.image)
-                        .into(imageView)
-                }
+                    binding?.CharacterImage?.let { imageView ->
+                        Glide.with(this@FavoriteCharacterDescriptionFragment)
+                            .load(favoriteCharacterDetails?.image)
+                            .into(imageView)
+                    }
 
-                binding?.deleteFavBtn?.setOnClickListener {
+                    binding?.deleteFavBtn?.setOnClickListener {
+                        lifecycleScope.launch {
+                            characterDao.deleteCharacterById(favoriteCharacterId)
 
-                    lifecycleScope.launch {
-                        characterDao.deleteCharacterById(favoriteCharacterId)
-
-                        val navControllers =
-                            Navigation.findNavController(binding!!.root)    /////////////////////////////////////  WYKRZYKNIKI POPRAWIĆ      ///!!!!!!!!!!!!!!!!!!!!!!!!!!!////////////////////!!!!!!!!!!!!!
-                        val action =
-                            FavoriteCharacterDescriptionFragmentDirections
-                                .actionFavoriteCharacterDescriptionFragmentToFavoriteCharacterListFragment(
-
-                                )
-                        navControllers.navigate(action)
+                            val navController = Navigation.findNavController(root)
+                            val action = FavoriteCharacterDescriptionFragmentDirections.actionFavoriteCharacterDescriptionFragmentToFavoriteCharacterListFragment()
+                            navController.navigate(action)
+                        }
                     }
                 }
             }
@@ -90,4 +79,3 @@ class FavoriteCharacterDescriptionFragment : Fragment() {
         _binding = null
     }
 }
-

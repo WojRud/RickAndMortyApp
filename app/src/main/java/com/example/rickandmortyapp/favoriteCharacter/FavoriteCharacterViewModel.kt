@@ -12,9 +12,8 @@ import kotlinx.coroutines.flow.stateIn
 
 class FavoriteCharacterViewModel(private val characterDao: CharacterDao) : ViewModel() {
 
-    val readAllData: StateFlow<List<FavoriteCharacterModel>> =
-        characterDao.readAllData()
-            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
+    val readAllData: StateFlow<List<FavoriteCharacterModel>> = characterDao.readAllData()
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
 
     class FavoriteCharacterViewModelFactory(
         private val characterDao: CharacterDao

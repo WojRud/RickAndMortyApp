@@ -3,9 +3,6 @@ package com.example.rickandmortyapp.characterDescription
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.rickandmortyapp.data.CharacterDatabase
 import com.example.rickandmortyapp.data.CharacterModel
@@ -20,8 +17,7 @@ import kotlinx.coroutines.launch
 class CharacterDescriptionViewModel(application: Application) : AndroidViewModel(application) {
     private val _characterData = MutableStateFlow<CharacterModel?>(null)
     val characterData: Flow<CharacterModel?>
-
-        get() = _characterData
+    get() = _characterData
 
     private val repository: CharacterRepository
 

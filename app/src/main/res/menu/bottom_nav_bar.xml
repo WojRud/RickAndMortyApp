@@ -2,16 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/navigation_home"
-        android:title="Home"
+        android:title="@string/NavBarHome"
         android:icon="@android:drawable/ic_menu_sort_by_size" />
 
     <item
         android:id="@+id/navigation_favorites"
-        android:title="Favorites"
+        android:title="@string/NavBarFavorites"
         android:icon="@android:drawable/star_big_off" />
 
     <item
         android:id="@+id/navigation_profile"
-        android:title="Profile"
+        android:title="@string/NavBarProfile"
         android:icon="@android:drawable/ic_menu_info_details" />
 </menu>

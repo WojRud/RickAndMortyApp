@@ -19,4 +19,7 @@
     <string name="bottom_navbar_fav">Favorites</string>
     <string name="bottom_navbar_opt">Option</string>
     <string name="delete_from_favorites">delete from favorites</string>
+    <string name="NavBarHome">Home</string>
+    <string name="NavBarFavorites">Favorites</string>
+    <string name="NavBarProfile">Profile</string>
 </resources>

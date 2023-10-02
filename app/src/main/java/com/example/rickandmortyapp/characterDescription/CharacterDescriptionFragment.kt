@@ -17,7 +17,9 @@ import com.example.rickandmortyapp.databinding.FragmentCharacterDescriptionBindi
 class CharacterDescriptionFragment : Fragment() {
     private var _binding: FragmentCharacterDescriptionBinding? = null
     private val binding get() = _binding
+
     private val args: CharacterDescriptionFragmentArgs by navArgs()
+
     private val viewModel: CharacterDescriptionViewModel by viewModels()
 
     override fun onCreateView(
@@ -39,42 +41,42 @@ class CharacterDescriptionFragment : Fragment() {
             .asLiveData()
             .observe(viewLifecycleOwner) { characterData: CharacterModel? ->
 
-            binding?.textGetName?.text = characterData?.name
-            binding?.textGetStatus?.text = characterData?.status
-            binding?.textGetSpecies?.text = characterData?.species
-            binding?.textGetGender?.text = characterData?.gender
+                binding?.textGetName?.text = characterData?.name
+                binding?.textGetStatus?.text = characterData?.status
+                binding?.textGetSpecies?.text = characterData?.species
+                binding?.textGetGender?.text = characterData?.gender
 
-            binding?.CharacterImage?.let { imageView ->
-                Glide.with(this)
-                    .load(characterData?.image)
-                    .into(imageView)
-            }
-
-            binding?.addToFavBtn?.setOnClickListener {
-
-                val favCharacter = characterData?.let { it1 ->
-                    FavoriteCharacterModel(
-                        it1.id,
-                        characterData.name,
-                        characterData.status,
-                        characterData.species,
-                        characterData.gender,
-                        characterData.image
-                    )
+                binding?.CharacterImage?.let { imageView ->
+                    Glide.with(this)
+                        .load(characterData?.image)
+                        .into(imageView)
                 }
 
-                val message = "DODANO"
-                val duration = Toast.LENGTH_SHORT
+                binding?.addToFavBtn?.setOnClickListener {
 
-                val toast = Toast.makeText(context, message, duration)
-                toast.show()
+                    val favCharacter = characterData?.let {
+                        FavoriteCharacterModel(
+                            characterData.id,
+                            characterData.name,
+                            characterData.status,
+                            characterData.species,
+                            characterData.gender,
+                            characterData.image
+                        )
+                    }
 
-                if (favCharacter != null) {
-                    viewModel.addCharacter(favCharacter)
+                    val message = "DODANO"
+                    val duration = Toast.LENGTH_SHORT
+
+                    val toast = Toast.makeText(context, message, duration)
+                    toast.show()
+
+                    if (favCharacter != null) {
+                        viewModel.addCharacter(favCharacter)
+                    }
+
                 }
-
             }
-        }
     }
 }
 

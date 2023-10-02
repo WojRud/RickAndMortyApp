@@ -33,25 +33,24 @@ class CharactersListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding?.apply {
 
-        recyclerView = binding?.CharactersListRecyclerView ?: return
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+            recyclerView = CharactersListRecyclerView
+            recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        characterAdapter = CharacterAdapter {
-            val action =
-                actionCharactersListFragmentToCharacterDescriptionFragment(
-                    it.id
-                )
-            view.findNavController().navigate(action)
+            characterAdapter = CharacterAdapter {
+                val action = actionCharactersListFragmentToCharacterDescriptionFragment(it.id)
+                view.findNavController().navigate(action)
+            }
+            recyclerView.adapter = characterAdapter
+
+            viewModel = ViewModelProvider(this@CharactersListFragment)[CharacterViewModel::class.java]
+
+            viewModel.characterList.observe(viewLifecycleOwner) { characters ->
+                characterAdapter.submitCharacterList(characters)
+            }
+            viewModel.getCharacterData()
         }
-        recyclerView.adapter = characterAdapter
-
-        viewModel = ViewModelProvider(this)[CharacterViewModel::class.java]
-
-        viewModel.characterList.observe(viewLifecycleOwner) { characters ->
-            characterAdapter.submitCharacterList(characters)
-        }
-        viewModel.getCharacterData()
     }
 
     override fun onDestroyView() {
