@@ -12,4 +12,17 @@
     <color name="lightgray">#AFAFAF</color>
     <color name="darkgrey">#454545</color>
     <color name="bottom_nav_bar">#432FBF</color>
+
+    <style name="textColor">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="addBtnColor">
+        <item name="android:textColor">@color/green</item>
+    </style>
+
+    <style name="deleteBtnColor">
+        <item name="android:textColor">@color/red</item>
+    </style>
+
 </resources>

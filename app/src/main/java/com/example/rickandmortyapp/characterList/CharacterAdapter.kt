@@ -13,8 +13,7 @@ class CharacterAdapter(
     private val onItemClicked: (CharacterModel) -> Unit
 ) : ListAdapter<CharacterModel, CharacterAdapter.ViewHolder>(CharacterDiffCallback) {
 
-    class ViewHolder(private val binding: ItemCharacterBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: ItemCharacterBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(character: CharacterModel) {
             binding.characterText.text = character.name
@@ -47,7 +46,6 @@ class CharacterAdapter(
                 parent,
                 false
             )
-
         )
     }
 
@@ -56,7 +54,7 @@ class CharacterAdapter(
         holder.bind(currentItem)
     }
 
-    fun submitCharacterList(characterList: List<CharacterModel>) {
-        submitList(characterList)
+    fun submitCharacterList(character: List<CharacterModel>) {
+        submitList(character)
     }
 }

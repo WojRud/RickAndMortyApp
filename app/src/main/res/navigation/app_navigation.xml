@@ -46,6 +46,11 @@
             android:id="@+id/action_favoriteCharacterDescriptionFragment_to_favoriteCharacterListFragment"
             app:destination="@id/favoriteCharacterListFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/infoFragment"
+        android:name="com.example.rickandmortyapp.infoBottomBar.InfoFragment"
+        android:label="InfoFragment"
+        tools:layout="@layout/fragment_info" />
 </navigation>
 
 

@@ -7,7 +7,9 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import com.example.rickandmortyapp.characterDescription.CharacterDescriptionFragment
 import com.example.rickandmortyapp.characterList.CharacterViewModel
+import com.example.rickandmortyapp.characterList.CharactersListFragment
 import com.example.rickandmortyapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -15,6 +17,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private lateinit var binding: ActivityMainBinding
     private val viewModel: CharacterViewModel by viewModels()
+
+    private var myFragment: CharactersListFragment? = null
+    private var mydescFragment: CharacterDescriptionFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +32,7 @@ class MainActivity : AppCompatActivity() {
             setOf(
                 R.id.charactersListFragment,
                 R.id.favoriteCharacterListFragment,
-                R.id.favoriteCharacterListFragment
+                R.id.infoFragment
             )
         )
         val toolBar = binding.topAppBar
@@ -49,7 +54,8 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.navigation_profile -> {
-                    false
+                    navController.navigate(R.id.infoFragment)
+                    true
                 }
 
                 else -> {
@@ -57,9 +63,8 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
         setContentView(binding.root)
-        viewModel.getCharacterData()
+
     }
 }
 

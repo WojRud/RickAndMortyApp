@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.rickandmortyapp.data.CharacterModel
 import com.example.rickandmortyapp.data.FavoriteCharacterModel
 import com.example.rickandmortyapp.databinding.FragmentCharacterDescriptionBinding
@@ -49,6 +50,7 @@ class CharacterDescriptionFragment : Fragment() {
                 binding?.CharacterImage?.let { imageView ->
                     Glide.with(this)
                         .load(characterData?.image)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .into(imageView)
                 }
 
@@ -65,7 +67,7 @@ class CharacterDescriptionFragment : Fragment() {
                         )
                     }
 
-                    val message = "DODANO"
+                    val message = "Added to favorite <3"
                     val duration = Toast.LENGTH_SHORT
 
                     val toast = Toast.makeText(context, message, duration)
