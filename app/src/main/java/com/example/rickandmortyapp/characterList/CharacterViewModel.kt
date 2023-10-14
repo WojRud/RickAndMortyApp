@@ -3,10 +3,8 @@ package com.example.rickandmortyapp.characterList
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
-import com.example.rickandmortyapp.data.CharacterModel
-import com.example.rickandmortyapp.data.CharacterRepository
-import com.example.rickandmortyapp.data.RickAndMortyApi
-import kotlinx.coroutines.flow.Flow
+import com.example.rickandmortyapp.data.network.CharacterModel
+import com.example.rickandmortyapp.data.network.RickAndMortyApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch

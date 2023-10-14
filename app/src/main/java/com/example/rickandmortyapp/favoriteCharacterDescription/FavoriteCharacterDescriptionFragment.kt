@@ -11,9 +11,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
-import com.example.rickandmortyapp.data.CharacterDao
-import com.example.rickandmortyapp.data.FavoriteCharacterApplication
-import com.example.rickandmortyapp.data.FavoriteCharacterModel
+import com.example.rickandmortyapp.data.local.CharacterDao
+import com.example.rickandmortyapp.data.local.FavoriteCharacterApplication
+import com.example.rickandmortyapp.data.local.FavoriteCharacterModel
 import com.example.rickandmortyapp.databinding.FragmentFavoriteCharacterDescriptionBinding
 import kotlinx.coroutines.launch
 

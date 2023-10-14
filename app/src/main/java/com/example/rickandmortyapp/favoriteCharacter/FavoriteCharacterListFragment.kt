@@ -11,7 +11,7 @@ import androidx.lifecycle.coroutineScope
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.rickandmortyapp.data.FavoriteCharacterApplication
+import com.example.rickandmortyapp.data.local.FavoriteCharacterApplication
 import com.example.rickandmortyapp.databinding.FragmentFavoriteCharacterListBinding
 import kotlinx.coroutines.launch
 

@@ -1,5 +1,7 @@
-package com.example.rickandmortyapp.data
+package com.example.rickandmortyapp.data.local
 
+import com.example.rickandmortyapp.data.local.CharacterDao
+import com.example.rickandmortyapp.data.local.FavoriteCharacterModel
 import kotlinx.coroutines.flow.Flow
 
 

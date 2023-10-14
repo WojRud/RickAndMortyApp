@@ -11,8 +11,8 @@ import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.example.rickandmortyapp.data.CharacterModel
-import com.example.rickandmortyapp.data.FavoriteCharacterModel
+import com.example.rickandmortyapp.data.network.CharacterModel
+import com.example.rickandmortyapp.data.local.FavoriteCharacterModel
 import com.example.rickandmortyapp.databinding.FragmentCharacterDescriptionBinding
 
 class CharacterDescriptionFragment : Fragment() {

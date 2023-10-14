@@ -2,8 +2,8 @@ package com.example.rickandmortyapp.favoriteCharacterDescription
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.rickandmortyapp.data.CharacterDao
-import com.example.rickandmortyapp.data.FavoriteCharacterModel
+import com.example.rickandmortyapp.data.local.CharacterDao
+import com.example.rickandmortyapp.data.local.FavoriteCharacterModel
 import kotlinx.coroutines.flow.Flow
 
 class FavoriteCharacterDescriptionViewModel(private val characterDao: CharacterDao) : ViewModel() {

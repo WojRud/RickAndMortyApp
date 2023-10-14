@@ -1,12 +1,11 @@
 package com.example.rickandmortyapp.favoriteCharacter
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.rickandmortyapp.data.FavoriteCharacterModel
+import com.example.rickandmortyapp.data.local.FavoriteCharacterModel
 import com.example.rickandmortyapp.databinding.ItemCharacterBinding
 
 class FavoriteCharacterAdapter(

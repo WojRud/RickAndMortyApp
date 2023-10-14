@@ -1,5 +1,6 @@
-package com.example.rickandmortyapp.data
+package com.example.rickandmortyapp.data.local
 
+import android.app.Application
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -19,4 +20,8 @@ interface CharacterDao {
 
     @Query("DELETE FROM favorite_table WHERE char_id = :id")
     suspend fun deleteCharacterById(id: Int)
+}
+
+class FavoriteCharacterApplication : Application() {
+    val database: CharacterDatabase by lazy { CharacterDatabase.getDatabase(this) }
 }

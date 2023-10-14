@@ -1,6 +1,6 @@
-package com.example.rickandmortyapp.data
+package com.example.rickandmortyapp.data.local
 
-data class CharacterModel(
+data class FavoriteCharacterDetails(
     val id: Int,
     val name: String,
     val status: String,

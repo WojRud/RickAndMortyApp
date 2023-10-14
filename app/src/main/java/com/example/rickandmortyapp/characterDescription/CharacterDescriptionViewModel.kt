@@ -4,19 +4,19 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.rickandmortyapp.data.CharacterDatabase
-import com.example.rickandmortyapp.data.CharacterModel
-import com.example.rickandmortyapp.data.CharacterRepository
-import com.example.rickandmortyapp.data.FavoriteCharacterModel
-import com.example.rickandmortyapp.data.RickAndMortyApi
+import com.example.rickandmortyapp.data.local.CharacterDatabase
+import com.example.rickandmortyapp.data.network.CharacterModel
+import com.example.rickandmortyapp.data.local.CharacterRepository
+import com.example.rickandmortyapp.data.local.FavoriteCharacterModel
+import com.example.rickandmortyapp.data.network.RickAndMortyApi
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class CharacterDescriptionViewModel(application: Application) : AndroidViewModel(application) {
     private val _characterData = MutableStateFlow<CharacterModel?>(null)
-    val characterData: Flow<CharacterModel?>
+    val characterData: StateFlow<CharacterModel?>
     get() = _characterData
 
     private val repository: CharacterRepository

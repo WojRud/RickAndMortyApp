@@ -6,7 +6,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.ListAdapter
-import com.example.rickandmortyapp.data.CharacterModel
+import com.example.rickandmortyapp.data.network.CharacterModel
 import com.example.rickandmortyapp.databinding.ItemCharacterBinding
 
 class CharacterAdapter(

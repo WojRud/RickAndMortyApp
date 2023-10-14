@@ -2,8 +2,8 @@ package com.example.rickandmortyapp.favoriteCharacter
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.rickandmortyapp.data.CharacterDao
-import com.example.rickandmortyapp.data.FavoriteCharacterModel
+import com.example.rickandmortyapp.data.local.CharacterDao
+import com.example.rickandmortyapp.data.local.FavoriteCharacterModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
