@@ -30,7 +30,6 @@ The application employs the following technology stack to power its functionalit
 * ROOM Database for storing favorite characters
 * RETROFIT to connect the project to the API
 * API integration with [The Rick and Morty API](https://rickandmortyapi.com/)
-* Search functionality for allowing users to search and filter data
 
 
 
