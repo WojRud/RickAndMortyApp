@@ -5,12 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".characterList.CharactersListFragment">
 
-    <include
-        android:id="@+id/networkError"
-        layout="@layout/network_error_layout"
-        android:visibility="gone"
-        tools:visibility="visible" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/CharactersListRecyclerView"
         android:layout_width="match_parent"

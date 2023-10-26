@@ -3,13 +3,10 @@ package com.example.rickandmortyapp.data.network
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkInfo
-import android.os.Build
 import androidx.lifecycle.LiveData
-import kotlinx.coroutines.flow.StateFlow
 
 class NetworkConnection(private val context: Context) : LiveData<Boolean>() {
 
@@ -20,13 +17,7 @@ class NetworkConnection(private val context: Context) : LiveData<Boolean>() {
     override fun onActive() {
         super.onActive()
         updateNetworkConnection()
-        when {
-            Build.VERSION.SDK_INT >= Build.VERSION_CODES.N -> {
-                connectivityManager.registerDefaultNetworkCallback(connectionCallback())
-             } else -> {
-                 context.registerReceiver(networkReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
-             }
-        }
+        connectivityManager.registerDefaultNetworkCallback(connectionCallback())
     }
 
     override fun onInactive() {
@@ -50,7 +41,7 @@ class NetworkConnection(private val context: Context) : LiveData<Boolean>() {
     }
 
     private fun updateNetworkConnection() {
-        val networkConnection:NetworkInfo? = connectivityManager.activeNetworkInfo
+        val networkConnection: NetworkInfo? = connectivityManager.activeNetworkInfo
         postValue(networkConnection?.isConnected == true)
     }
 
