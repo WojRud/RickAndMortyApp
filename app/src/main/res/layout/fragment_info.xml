@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -9,7 +8,7 @@
         android:id="@+id/appAuthorText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="App Author: Wojciech Rudol"
+        android:text="@string/app_author_wojciech_rudol"
         app:layout_constraintBottom_toTopOf="@+id/authorContactText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -18,7 +17,7 @@
         android:id="@+id/authorContactText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Contact: wojciechrudol@gmail.com"
+        android:text="@string/contact_wojciechrudol_gmail_com"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +27,7 @@
         android:id="@+id/copyAuthorMailBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Copy E-Mail"
+        android:text="@string/copy_e_mail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/authorContactText" />

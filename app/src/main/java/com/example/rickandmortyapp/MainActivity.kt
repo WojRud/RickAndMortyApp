@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.example.rickandmortyapp.data.network.NetworkConnection
 import com.example.rickandmortyapp.databinding.ActivityMainBinding
@@ -16,6 +15,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -31,15 +31,6 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.charactersListFragment,
-                R.id.favoriteCharacterListFragment,
-                R.id.infoFragment
-            )
-        )
-        val toolBar = binding.topAppBar
-        toolBar.setupWithNavController(navController, appBarConfiguration)
 
         val bottomNavigationView = binding.bottomNav
         bottomNavigationView.setupWithNavController(navController)
