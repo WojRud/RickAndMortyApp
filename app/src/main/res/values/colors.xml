@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_200">#636363</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
     <color name="green">#00FF0A</color>
@@ -13,16 +13,16 @@
     <color name="darkgrey">#454545</color>
     <color name="bottom_nav_bar">#432FBF</color>
 
-    <style name="textColor">
-        <item name="android:textColor">@color/black</item>
-    </style>
+    <color name="backgroundBtn">#FCC303</color>
 
-    <style name="addBtnColor">
-        <item name="android:textColor">@color/green</item>
-    </style>
+    <color name="selectedColor">#FCC303</color>
 
-    <style name="deleteBtnColor">
-        <item name="android:textColor">@color/red</item>
-    </style>
+    <color name="textDay">#000000</color>
+    <color name="backgroundDay">#FFFFFF</color>
+    <color name="itemDay">#F3F6FB</color>
+
+    <color name="textNight">#FFFFFF</color>
+    <color name="backgroundNight">#212121</color>
+    <color name="itemNight">#363636</color>
 
 </resources>

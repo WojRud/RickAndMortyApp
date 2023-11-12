@@ -2,15 +2,38 @@
     <!-- Base application theme. -->
     <style name="Theme.RickAndMortyApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
+        <item name="colorPrimary">@color/itemNight</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorOnPrimary">@color/textNight</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">#FFEB3B</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="backgroundScreen">
+        <item name="android:background">@color/backgroundNight</item>
+    </style>
+
+    <style name="backgroundItem">
+        <item name="android:background">@color/itemNight</item>
+    </style>
+
+    <style name="text">
+        <item name="android:textColor">@color/textNight</item>
+    </style>
+
+    <style name="button">
+        <item name="android:background">@color/backgroundBtn</item>
+        <item name="android:textColor">@color/textNight</item>
+    </style>
+
+    <style name="item">
+        <item name="android:background">@color/itemNight</item>
+        <item name="android:textColor">@color/textNight</item>
+    </style>
+
 </resources>

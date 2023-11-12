@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        /*
         val networkConnection = NetworkConnection(applicationContext)
         networkConnection.observe(this) {
             if (it) {
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "CHECK YOUR INTERNET CONNECTION", Toast.LENGTH_SHORT).show()
             }
         }
+         */
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment

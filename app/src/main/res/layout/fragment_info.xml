@@ -1,13 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/backgroundScreen"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <Switch
+        android:id="@+id/modeSwitch"
+        style="@style/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="40sp"
+        android:text="@string/night_mode"
+        app:layout_constraintBottom_toTopOf="@+id/appAuthorText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <TextView
         android:id="@+id/appAuthorText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
+        style="@style/text"
         android:text="@string/app_author_wojciech_rudol"
         app:layout_constraintBottom_toTopOf="@+id/authorContactText"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,20 +34,25 @@
         android:id="@+id/authorContactText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
+        style="@style/text"
         android:text="@string/contact_wojciechrudol_gmail_com"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <Button app:backgroundTint="@color/backgroundBtn"
         android:id="@+id/copyAuthorMailBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button_add_to_fav"
         android:text="@string/copy_e_mail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/authorContactText" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
