@@ -34,7 +34,7 @@ class FavoriteCharacterAdapter(
                 false
             )
         )
-        viewHolder.itemView.setOnClickListener {
+        viewHolder.binding.characterText.setOnClickListener {
             val position = viewHolder.adapterPosition
             onItemClicked(getItem(position))
         }
@@ -46,12 +46,13 @@ class FavoriteCharacterAdapter(
     }
 
     class FavCharViewHolder(
-        private var binding: ItemCharacterBinding
+        val binding: ItemCharacterBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(favCharacterModel: FavoriteCharacterModel) {
             binding.characterText.text = favCharacterModel.name
         }
     }
 }
+
 
 

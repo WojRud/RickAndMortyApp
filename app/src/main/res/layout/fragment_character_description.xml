@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="5dp"
     tools:context=".characterDescription.CharacterDescriptionFragment">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/CharacterImage"
         android:layout_width="300dp"
         android:layout_height="300dp"
@@ -13,6 +14,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars"
+        app:civ_border_width="3dp"
+        app:civ_border_color="@color/backgroundBtn"
         android:contentDescription="@string/characterDescriptionImage" />
 
     <TextView

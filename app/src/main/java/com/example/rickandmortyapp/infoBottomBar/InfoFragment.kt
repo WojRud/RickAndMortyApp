@@ -1,16 +1,13 @@
 package com.example.rickandmortyapp.infoBottomBar
 
-import android.annotation.SuppressLint
-import android.content.ClipData
-import android.content.ClipboardManager
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
+import androidx.viewpager2.widget.ViewPager2
+import com.example.rickandmortyapp.Page1Fragment
+import com.example.rickandmortyapp.Page2Fragment
 import com.example.rickandmortyapp.databinding.FragmentInfoBinding
 
 class InfoFragment : Fragment() {
@@ -20,6 +17,8 @@ class InfoFragment : Fragment() {
 
     private var value: String? = null
 
+    private lateinit var viewPager: ViewPager2
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -28,41 +27,22 @@ class InfoFragment : Fragment() {
         val fragmentBinding = FragmentInfoBinding.inflate(inflater, container, false)
         _binding = fragmentBinding
 
-        binding?.copyAuthorMailBtn?.setOnClickListener {
-            val email = "wojciechrudol@gmail.com"
-            val clipboardManager = it.context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-            val clipData = ClipData.newPlainText("label", email)
-            clipboardManager.setPrimaryClip(clipData)
-            Toast.makeText(it.context, "Copied: $email", Toast.LENGTH_SHORT).show()
-        }
+        viewPager = _binding!!.viewPager
+
+        val fragments: ArrayList<Fragment> = arrayListOf(
+            Page1Fragment(),
+            Page2Fragment()
+        )
+
+        val adapter = ViewPageAdapter(fragments, this)
+        viewPager.adapter = adapter
+
+
+
+
         return fragmentBinding.root
     }
 
-    @SuppressLint("UseSwitchCompatOrMaterialCode")
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
-        val switch = binding?.modeSwitch
-
-        switch?.setOnCheckedChangeListener{buttonView, isChecked ->
-
-            val newTheme = if (isChecked) {
-                AppThemes.DAY
-            } else {
-                AppThemes.NIGHT
-            }
-            setAppTheme(newTheme)
-
-
-
-        }
-    }
-
-    private fun setAppTheme(theme: AppThemes) {
-        when (theme) {
-            AppThemes.DAY -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            AppThemes.SYSTEM -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-            AppThemes.NIGHT -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        }
-    }
 }
+

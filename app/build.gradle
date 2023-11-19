@@ -85,6 +85,9 @@ dependencies {
     testImplementation("androidx.room:room-testing:2.5.2")
     implementation("androidx.room:room-paging:2.5.2")
 
+    // Hdodenhof
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
     modules {
         module("org.jetbrains.kotlin:kotlin-stdlib-jdk7") {
             replacedBy("org.jetbrains.kotlin:kotlin-stdlib", "kotlin-stdlib-jdk7 is now part of kotlin-stdlib")

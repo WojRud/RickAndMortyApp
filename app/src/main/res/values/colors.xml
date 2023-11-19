@@ -14,8 +14,9 @@
     <color name="bottom_nav_bar">#432FBF</color>
 
     <color name="backgroundBtn">#FCC303</color>
-
     <color name="selectedColor">#FCC303</color>
+    
+    <color name="transparent">#00FFFFFF</color>
 
     <color name="textDay">#000000</color>
     <color name="backgroundDay">#FFFFFF</color>
