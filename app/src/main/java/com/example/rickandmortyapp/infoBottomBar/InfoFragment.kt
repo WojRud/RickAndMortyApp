@@ -46,3 +46,15 @@ class InfoFragment : Fragment() {
 
 }
 
+
+
+
+
+
+
+
+
+
+
+
+

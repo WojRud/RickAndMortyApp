@@ -44,14 +44,11 @@ class Page1Fragment : Fragment() {
             setAppTheme(newTheme)
         }
     }
+}
 
-    private fun setAppTheme(theme: AppThemes) {
-        when (theme) {
-            AppThemes.DAY -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            AppThemes.NIGHT -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        }
-
-
+private fun setAppTheme(theme: Any?) {
+    when (theme) {
+        AppThemes.DAY -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        AppThemes.NIGHT -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
     }
-
 }

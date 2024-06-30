@@ -28,4 +28,5 @@
     <string name="night_mode">Change Theme</string>
     <string name="change_mode">Change Mode</string>
     <string name="swipe_info">Swipe for more information > > </string>
+    <string name="dog_content_description">text</string>
 </resources>
